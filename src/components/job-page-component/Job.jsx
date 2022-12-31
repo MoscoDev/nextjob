@@ -84,7 +84,6 @@ function Job() {
                 55 people applied
               </Text>
             </Flex>
-           
             <a
               href="#"
               className="mt-1 flex w-fit items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-2 lg:px-4 lg:text-md text-sm font-normal text-white shadow-sm hover:bg-indigo-700"

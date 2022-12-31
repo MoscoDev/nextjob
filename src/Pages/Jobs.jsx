@@ -42,7 +42,7 @@ function Jobs() {
         gap={4}
       >
         <GridItem
-          className="lg:py-0 gap-5  h-[calc(100vh-120px)] lg:grid hidden sticky top-10"
+          className="lg:pb-10 gap-5  h-[calc(100vh-30px)] lg:grid hidden sticky top-10"
           colSpan={3}
           bg="transparent"
           overflowY={"scroll"}
