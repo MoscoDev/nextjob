@@ -36,25 +36,26 @@ function Jobs() {
     <div style={{ maxWidth: "100vw" }}>
       <Navbar />
       <Grid
-        className="px-6 bg-grey/20 py-6 lg:px-18"
-        templateColumns="repeat(12, 1fr)"
+        className="px-6 bg-grey/20 py-6 lg:px-18 lg:grid-cols-12 sm:grid-cols-6"
         alignItems={"start"}
         gap={4}
       >
         <GridItem
-          className="lg:pb-10 gap-5  h-[calc(100vh-30px)] lg:grid hidden sticky top-10"
-          colSpan={3}
+          className="lg:py-0 gap-5 max-h-[calc(80vh-0px)] lg:grid hidden sticky top-10 lg:col-span-3"
           bg="transparent"
-          overflowY={"scroll"}
         >
-          <Profile />
-          <Experience />
-          <Skills />
+          {!isLoggedIn && <Auth />}
+          {isLoggedIn && (
+            <Box overflowY={"scroll"}>
+              <Profile />
+              <Experience />
+              <Skills />
+            </Box>
+          )}
         </GridItem>
         <GridItem
-          colSpan={6}
           bg="transparent"
-          className="lg:py-0 gap-5 lg:grid"
+          className="lg:py-0  col-span-6 gap-5 lg:block w-full"
         >
           <Skeleton isLoaded={setTimeout(() => setIsLoaded(true), 2000)}>
             <Stack gap={2}>
@@ -72,9 +73,8 @@ function Jobs() {
           </Skeleton>
         </GridItem>
         <GridItem
-          colSpan={3}
           bg="transparent"
-          className="lg:py-0 gap-5 lg:block hidden top-10 sticky"
+          className="lg:py-0 gap-5 lg:col-span-3 lg:block hidden top-10 sticky"
         >
           <Skeleton isLoaded={setTimeout(() => setIsLoaded(true), 2000)}>
             <Stack>
