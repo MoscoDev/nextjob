@@ -6,6 +6,7 @@ import {
   CardHeader,
   Checkbox,
   Divider,
+  Flex,
   Heading,
   HStack,
   Input,
@@ -21,13 +22,15 @@ function Auth() {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   return (
-    <Card variant={"filled"} className="rounded-lg" bg={"white"}>
+    <Card variant={"filled"} className="rounded-lg h-[calc(60vh)]" bg={"white"}>
       <CardHeader>
         <Stack spacing={3}>
           <Heading className="text-indigo-700" size="md">
             Log in to apply now
           </Heading>
-          <Text fontSize={"xs"}>Use your social account to log in as a Seeker.</Text>
+          <Text fontSize={"sm"}>
+            Use your social account to log in as a Seeker.
+          </Text>
           <HStack justifyContent={"space-between"}>
             <Button variant={"outline"} className={" w-full"}>
               <svg
@@ -97,7 +100,20 @@ function Auth() {
           </HStack>
         </Stack>
       </CardHeader>
+
       <CardBody>
+        <Flex px="6" mb={"8"} align="center">
+          <Divider />
+          <Text
+            color={"gray"}
+            padding="2"
+            fontSize={"sm"}
+            whiteSpace={"nowrap"}
+          >
+            Or continue with
+          </Text>
+          <Divider />
+        </Flex>
         <Stack spacing={3}>
           <Input placeholder="Email Address" size="md" pr="4.5rem" />
           <InputGroup size="md">
@@ -134,7 +150,10 @@ function Auth() {
       <CardFooter textAlign={"center"} bg={"chakra-subtle-bg"}>
         <span className="text-sm w-full">
           Don't have an account?
-          <Link className="text-sm text-indigo-700"> sign up to apply</Link>
+          <Link to={"/sign-up"} className="text-sm text-indigo-700">
+            {" "}
+            sign up to apply
+          </Link>
         </span>
       </CardFooter>
     </Card>

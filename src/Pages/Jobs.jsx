@@ -55,7 +55,7 @@ function Jobs() {
         </GridItem>
         <GridItem
           bg="transparent"
-          className="lg:py-0  col-span-6 gap-5 lg:block w-full"
+          className="lg:py-0 sm:px-0  lg:col-span-6 md:col-span-4 sm:col-span-6 gap-5 lg:block w-full"
         >
           <Skeleton isLoaded={setTimeout(() => setIsLoaded(true), 2000)}>
             <Stack gap={2}>
@@ -74,7 +74,7 @@ function Jobs() {
         </GridItem>
         <GridItem
           bg="transparent"
-          className="lg:py-0 gap-5 lg:col-span-3 lg:block hidden top-10 sticky"
+          className="lg:py-0 gap-5 lg:col-span-3 md:col-span-2 lg:block md:block sm:hidden top-10 sticky"
         >
           <Skeleton isLoaded={setTimeout(() => setIsLoaded(true), 2000)}>
             <Stack>
@@ -192,7 +192,13 @@ function Jobs() {
                       <Button size={"xs"}>Clear all</Button>
                     </Flex>
                     <CheckboxGroup>
-                      <Stack spacing={"3"} direction={["column", "row"]}>
+                      <Stack
+                        gap={"2"}
+                        marginStart={"0px"}
+                        marginInlineStart={"0"}
+                        direction={["row"]}
+                        wrap={"wrap"}
+                      >
                         <Checkbox
                           className="accent-indigo-800"
                           fontWeight={"semibold"}
@@ -214,18 +220,8 @@ function Jobs() {
                           fontWeight={"semibold"}
                           value="senior"
                           size={"sm"}
-                          _checked={{
-                            // bg: "teal.600",
-                            accentColor: "brand.800",
-                            // color: "white",
-                            _focusVisible: "brand.800",
-                            borderColor: "teal.600",
-                          }}
-                          _focus={{
-                            boxShadow: "outline",
-                            accentColor: "brand.800",
-                            borderColor: "brand.800",
-                          }}
+                          marginStart={"0px"}
+                          marginInlineStart={"0"}
                         >
                           Onsite
                         </Checkbox>

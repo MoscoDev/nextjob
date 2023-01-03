@@ -5,6 +5,8 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/img/logo.svg";
 import { locations, categories } from "../../utils/location";
+import Job from "../components/job-page-component/Job";
+import { Box, Grid, GridItem, Heading } from "@chakra-ui/react";
 
 const navigation = [
   { name: "Contact", href: "/contact" },
@@ -240,6 +242,37 @@ export default function Example() {
           </div>
         </div>
       </main>
+      <Box className="rounded-md p-10 mt-5 z-0">
+        <Heading textAlign={"center"} className="px-6 py-10 lg:px-8">
+          Find the right job vacancies in Nigeria
+        </Heading>
+        <Grid
+          className="lg:grid-cols-12 gap-4 md:grid-cols-8  sm:grid-cols-4"
+          alignItems={"start"}
+        >
+          <GridItem className="col-span-4">
+            <Job />
+          </GridItem>
+          <GridItem className="col-span-4">
+            <Job />
+          </GridItem>
+          <GridItem className="col-span-4">
+            <Job />
+          </GridItem>
+          <GridItem className="col-span-4">
+            <Job />
+          </GridItem>
+          <GridItem className="col-span-4">
+            <Job />
+          </GridItem>
+          <GridItem className="col-span-4">
+            <Job />
+          </GridItem>
+          <GridItem className="col-span-4">
+            <Job />
+          </GridItem>
+        </Grid>
+      </Box>
     </div>
   );
 }
