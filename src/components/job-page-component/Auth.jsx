@@ -115,10 +115,10 @@ function Auth() {
           <Divider />
         </Flex>
         <Stack spacing={3}>
-          <Input placeholder="Email Address" size="md" pr="4.5rem" />
+          <Input placeholder="Email Address" size="md" pr="1rem" />
           <InputGroup size="md">
             <Input
-              pr="4.5rem"
+              pr="1rem"
               type={show ? "text" : "password"}
               placeholder="Enter password"
             />
