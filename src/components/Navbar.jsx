@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { Dialog } from "@headlessui/react";
 import { Tooltip } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,7 +18,7 @@ function Navbar() {
   const navigation = [
     {
       name: "My Jobs",
-      href: "/contact",
+      to: "/myjobs",
       icon: (
         <Tooltip label={"My Jobs"}>
           <BriefcaseIcon className="h-5 w-5" />
@@ -26,7 +27,7 @@ function Navbar() {
     },
     {
       name: "Notifications",
-      href: "/notification",
+      to: "/notification",
       icon: (
         <Tooltip label={"Notifications"}>
           <BellAlertIcon className="h-5 w-5 hover:text-white" />
@@ -35,7 +36,7 @@ function Navbar() {
     },
     {
       name: "Saved",
-      href: "/saved",
+      to: "/saved",
       icon: (
         <Tooltip label={"Saved Jobs"}>
           <BookmarkIcon className="h-5 w-5 active:text-indigo-700" />
@@ -44,7 +45,7 @@ function Navbar() {
     },
     {
       name: "Profile",
-      href: "/profile",
+      to: "/profile",
       icon: (
         <Tooltip label={"Profile"}>
           <UserIcon className="h-5 w-5" />
@@ -60,10 +61,10 @@ function Navbar() {
           aria-label="Global"
         >
           <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link to="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img className="h-8" src={logo} alt="" />
-            </a>
+           </Link>
           </div>
           <div className="flex md:hidden lg:hidden">
             <button
@@ -79,21 +80,21 @@ function Navbar() {
           <div className="hidden md:flex lg:flex lg:min-w-0 lg:flex-1 lg:justify-end items-center md:gap-x-5">
             <div className="sm:hidden md:flex lg:flex lg:min-w-fit lg: md:justify-center md:gap-x-5  whitespace-nowrap">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.to}
                   className="font-semibold text-black-500 hover:text-white flex-nowrap p-2 hover:p-2 rounded-full bg-grey/80 m-auto hover:bg-indigo-700 ease-in"
                 >
                   {item.icon}
-                </a>
+               </Link>
               ))}
             </div>
-            <a
-              href="#"
+            <Link
+              to="/employer"
               className="flex w-fit items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-1.5 text-base font-medium text-white shadow-sm hover:bg-indigo-700 whitespace-nowrap"
             >
               Post Job
-            </a>
+           </Link>
           </div>
         </nav>
         <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -103,10 +104,10 @@ function Navbar() {
           >
             <div className="flex h-9 items-center justify-between">
               <div className="flex">
-                <a href="#" className="-m-1.5 p-1.5">
+                <Link to="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">Your Company</span>
                   <img className="h-8" src={logo} alt="" />
-                </a>
+               </Link>
               </div>
               <div className="flex">
                 <button
@@ -123,22 +124,22 @@ function Navbar() {
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.to}
                       className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
                     >
                       {item.name}
-                    </a>
+                   </Link>
                   ))}
                 </div>
                 <div className="py-6">
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
                   >
                     Log in
-                  </a>
+                 </Link>
                 </div>
               </div>
             </div>
