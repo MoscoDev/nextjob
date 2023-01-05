@@ -22,7 +22,7 @@ function Auth() {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   return (
-    <Card variant={"filled"} className="rounded-lg h-[calc(60vh)]" bg={"white"}>
+    <Card variant={"filled"} className="rounded-lg h-[calc(100vh-78px)]" bg={"white"}>
       <CardHeader>
         <Stack spacing={3}>
           <Heading className="text-indigo-700" size="md">

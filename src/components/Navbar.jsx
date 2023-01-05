@@ -54,15 +54,15 @@ function Navbar() {
     },
   ];
   return (
-    <div className="px-6 py-5 lg:px-20 border-y border-b-indigo-400/60 ">
+    <div className="px-6 py-5 lg:px-20 border-y border-b-indigo-200/60 ">
       <div>
         <nav
           className="flex h-9 items-center justify-between"
           aria-label="Global"
         >
           <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-            <Link to="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+            <Link to="/" className="-m-1.5 p-1.5">
+              <span className="sr-only">Nextjobs</span>
               <img className="h-8" src={logo} alt="" />
            </Link>
           </div>

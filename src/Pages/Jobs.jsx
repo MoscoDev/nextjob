@@ -26,7 +26,7 @@ import Navbar from "../components/Navbar";
 import Skills from "../components/job-page-component/Skills";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import Job from "../components/job-page-component/Job";
-import Auth from "../components/job-page-component/Auth";
+import Auth from "../components/Auth";
 
 function Jobs() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,7 +34,6 @@ function Jobs() {
 
   return (
     <div style={{ maxWidth: "100vw" }}>
-      <Navbar />
       <Grid
         className="px-6 bg-grey/20 py-6 lg:px-18 lg:grid-cols-12 sm:grid-cols-6"
         alignItems={"start"}

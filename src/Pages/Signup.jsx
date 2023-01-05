@@ -1,7 +1,5 @@
 import {
-  Box,
   Button,
-  Card,
   Center,
   Flex,
   FormControl,
@@ -17,7 +15,6 @@ import {
   InputRightElement,
   Select,
   Stack,
-  StackDivider,
   Text,
 } from "@chakra-ui/react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
@@ -46,7 +43,7 @@ function Signup() {
   const [isPassowrdError, setIsPassowrdError] = useState(false);
   return (
     <div>
-      <Navbar />
+     
       <div className="lg:hidden block">
         <Center className="lg:p-12 md:p-12 p-6">
           <Stack>
