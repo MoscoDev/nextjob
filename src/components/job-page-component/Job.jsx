@@ -19,7 +19,7 @@ import { BookmarkIcon, CurrencyDollarIcon, UserGroupIcon } from "@heroicons/reac
 
 function Job() {
   return (
-    <Card variant={"filled"} className="rounded-lg" bg={"white"}>
+    <Card variant={"filled"} className="rounded-lg " bg={"white"}>
       <CardHeader>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Flex columnGap={2} alignItems={"center"}>

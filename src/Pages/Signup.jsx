@@ -43,7 +43,6 @@ function Signup() {
   const [isPassowrdError, setIsPassowrdError] = useState(false);
   return (
     <div>
-     
       <div className="lg:hidden block">
         <Center className="lg:p-12 md:p-12 p-6">
           <Stack>
@@ -63,7 +62,7 @@ function Signup() {
       >
         <GridItem
           textAlign={"center"}
-          className="lg:py-0 gap-5 sm:col-span-12 md:col-span-12 grid lg:col-span-6"
+          className="sticky top-[78px] lg:py-0 gap-5 sm:col-span-12 md:col-span-12 grid lg:col-span-6"
         >
           <Heading>Personal Information</Heading>
           <Text>This is information pertaining to you as an individual</Text>
@@ -76,11 +75,11 @@ function Signup() {
         </GridItem>
         <GridItem className="lg:pt-10 lg:pb-0 sm:col-span-12 md:col-span-12 lg:col-span-6">
           <FormControl>
-            <Stack gap={"1"}>
+            <Stack>
               <Grid
                 columnGap={"5"}
-                rowGap={"4"}
-                className="px-6 lg:py-4 sm:py-0 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12"
+                rowGap="4"
+                className="px-4 lg:py-3 sm:py-0 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12"
               >
                 <GridItem className="lg:col-span-6 md:col-span-6 sm:col-span-6">
                   <FormLabel>First Name</FormLabel>
@@ -129,7 +128,7 @@ function Signup() {
               <Grid
                 columnGap={"5"}
                 rowGap="4"
-                className="px-4 lg:py-6 sm:py-0 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12"
+                className="px-4 lg:py-3 sm:py-0 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12"
               >
                 <GridItem className="lg:col-span-6 md:col-span-6 sm:col-span-6">
                   <FormLabel>Date of Birth</FormLabel>
@@ -167,7 +166,7 @@ function Signup() {
               <Grid
                 columnGap={"5"}
                 rowGap="4"
-                className="px-6 lg:py-6 sm:py-0 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 border-1"
+                className="px-6 lg:py-3 sm:py-0 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 border-1"
               >
                 <GridItem className="lg:col-span-6 md:col-span-6 sm:col-span-6">
                   <FormLabel>Highest Qualification</FormLabel>
@@ -219,7 +218,7 @@ function Signup() {
                   </Select>
                 </GridItem>
               </Grid>
-              <Flex className="px-6 lg:py-4 sm:py-0 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 justify-end">
+              <Flex className="px-6 lg:py-3 sm:py-0 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 justify-end">
                 <Link className="flex w-2/6 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 whitespace-nowrap">
                   Register
                 </Link>

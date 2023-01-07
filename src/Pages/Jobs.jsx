@@ -30,17 +30,17 @@ import Auth from "../components/Auth";
 
 function Jobs() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setisLoggedIn] = useState(true);
 
   return (
     <div style={{ maxWidth: "100vw" }}>
       <Grid
-        className="px-6 bg-grey/20 py-6 lg:px-18 lg:grid-cols-12 sm:grid-cols-6"
+        className="sm:px-10 bg-grey/20 sm:py-0 lg:py-6 lg:px-18 lg:grid-cols-12 sm:grid-cols-6"
         alignItems={"start"}
         gap={4}
       >
         <GridItem
-          className="lg:py-0 gap-5 max-h-[calc(80vh-0px)] lg:grid hidden sticky top-10 lg:col-span-3"
+          className="lg:py-0 gap-5 h-[85vh] lg:grid hidden sticky top-[calc(78px+1.5rem)] lg:col-span-3"
           bg="transparent"
         >
           {!isLoggedIn && <Auth />}
@@ -73,7 +73,7 @@ function Jobs() {
         </GridItem>
         <GridItem
           bg="transparent"
-          className="lg:py-0 gap-5 lg:col-span-3 md:col-span-2 lg:block md:block sm:hidden top-10 sticky"
+          className="lg:py-0 gap-5 lg:col-span-3 md:col-span-2 lg:block md:block sm:hidden  top-[calc(78px+1.5rem)] sticky"
         >
           <Skeleton isLoaded={setTimeout(() => setIsLoaded(true), 2000)}>
             <Stack>
