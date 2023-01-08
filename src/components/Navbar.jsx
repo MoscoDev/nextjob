@@ -49,7 +49,7 @@ function Navbar() {
         </Tooltip>
       ),
       action: btnRef,
-      onClick:onOpen
+      onClick: onOpen,
     },
     {
       name: "Saved",
@@ -152,7 +152,7 @@ function Navbar() {
             >
               <div className="flex h-9 items-center justify-between">
                 <div className="flex">
-                  <Link to="#" className="-m-1.5 p-1.5">
+                  <Link to="/" className="-m-1.5 p-1.5">
                     <span className="sr-only">Your Company</span>
                     <img className="h-8" src={logo} alt="" />
                   </Link>
@@ -175,6 +175,12 @@ function Navbar() {
                       <Link
                         key={item.name}
                         to={item.to}
+                        ref={item.action}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setMobileMenuOpen(false);
+                          item.onClick()
+                        }}
                         className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
                       >
                         {item.name}
@@ -183,8 +189,9 @@ function Navbar() {
                   </div>
                   <div className="py-6">
                     <Link
-                      to="#"
+                      to="/login"
                       className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       Log in
                     </Link>

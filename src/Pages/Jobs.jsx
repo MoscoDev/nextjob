@@ -45,11 +45,31 @@ function Jobs() {
         >
           {!isLoggedIn && <Auth />}
           {isLoggedIn && (
-            <Box overflowY={"scroll"}>
+            <Stack paddingRight={"3"}
+              id="scroller"
+              onMouseOver={() => {
+                document
+                  .getElementById("scroller")
+                  .classList.add(
+                    "scrollbar-thumb-indigo-600/25"
+                  );
+                 
+                
+                
+              }}
+              onMouseLeave={()=>{ 
+                setTimeout(()=>{ document
+                  .getElementById("scroller")
+                  .classList.remove("scrollbar-thumb-indigo-600/25");},500)
+               
+                }}
+              className="scrollbar-thin ease scroll-smooth scrollbar-corner-rounded-md duration-1000 scrollbar-thumb-indigo-600/1 scrollbar-track-indigo-200/0 scrollbar-thumb-rounded"
+              overflowY={"scroll"}
+            >
               <Profile />
               <Experience />
               <Skills />
-            </Box>
+            </Stack>
           )}
         </GridItem>
         <GridItem

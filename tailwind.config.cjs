@@ -8,6 +8,7 @@ module.exports = {
       },
     },
   },
-  mode: 'jit',
-  plugins: [],
+  mode: "jit",
+  plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
+  
 };
