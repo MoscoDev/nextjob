@@ -32,9 +32,9 @@ function Job({
     <Card variant={"filled"} className="rounded-lg " bg={"white"}>
       <CardHeader>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
-          <Flex columnGap={2} alignItems={"center"}>
+          <Flex columnGap={3} alignItems={"center"}>
             <Avatar
-              size={"sm"}
+              size={"md"}
               colorScheme={"purple"}
               name={hiringFor}
               src={organization}
