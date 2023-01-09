@@ -64,7 +64,7 @@ function Job({
       </CardHeader>
       <CardBody>
         <Stack spacing={4}>
-          <Text fontSize={"sm"} noOfLines={[1, 2, 2]}>
+          <Text fontSize={"sm"} noOfLines={[2, 2, 2]}>
             {description}
           </Text>
           <HStack wrap={"wrap"} gap={2}>
