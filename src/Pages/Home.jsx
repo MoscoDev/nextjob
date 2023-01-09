@@ -82,7 +82,7 @@ export default function Example() {
                 </p>
               </div>
 
-              <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-42rem)]">
+              <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-2xl sm:top-[calc(100%-42rem)]">
                 <svg
                   className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
                   viewBox="0 0 1155 678"
@@ -114,7 +114,7 @@ export default function Example() {
           <div className="bg-indigo-500/60 -mt-20 rounded-lg">
             <div className="mx-auto max-w-7xl py-4 px-4 sm:px-6 sm:py-2 lg:flex lg:items-center lg:justify-between lg:py-16 lg:px-8 gap-10 rounded">
               <div
-                className="mx-auto max-w-7xl flex flex-col flex-1 rounded-md
+                className="mx-auto max-w-7xl flex flex-col flex-1 rounded-md justify-end
               "
               >
                 <input
@@ -168,7 +168,7 @@ export default function Example() {
               </div>
               <a
                 href="#"
-                className="mt-1 flex w-fit items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-3 lg:px-8 lg:text-base text-xs font-normal text-white shadow-sm hover:bg-indigo-700"
+                className="mt-3 flex items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-3 lg:px-8 lg:text-base text-xs font-normal text-white shadow-sm hover:bg-indigo-700"
               >
                 Find jobs
               </a>
