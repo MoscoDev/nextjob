@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v3.0+ */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 // import img from "next/img";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -7,6 +7,7 @@ import logo from "../assets/img/logo.svg";
 import { locations, categories } from "../../utils/location";
 import Job from "../components/job-page-component/Job";
 import { Box, Grid, GridItem, Heading } from "@chakra-ui/react";
+import axios from "axios";
 
 const navigation = [
   { name: "Contact", href: "/contact" },
@@ -17,6 +18,25 @@ const navigation = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    var data = "";
+
+    var config = {
+      method: "get",
+      url: "https://nextjobs.onrender.com/api/v1/jobs/?limit=9",
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        setJobs(response.data.data);
+        console.log(jobs);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="isolate bg-white">
@@ -47,7 +67,7 @@ export default function Example() {
           </defs>
         </svg>
       </div>
-    
+
       <main>
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
@@ -116,7 +136,10 @@ export default function Example() {
                   className="mt-1 block w-full rounded-md border sm:text-sm text-sm lg:font-medium font-normal border-gray-300 bg-white py-2 lg:py-2.5 lg:px-5 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 "
                 >
                   {categories.map((category) => (
-                    <option className="text-sm sm:text-xs capitalize">
+                    <option
+                      key={category}
+                      className="text-sm sm:text-xs capitalize"
+                    >
                       {category}
                     </option>
                   ))}
@@ -134,7 +157,10 @@ export default function Example() {
                   className="mt-1 block w-full rounded-md border sm:text-sm text-sm lg:font-medium font-normal border-gray-300 bg-white py-2 lg:py-2.5 lg:px-5 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 "
                 >
                   {locations.map((location) => (
-                    <option className="text-sm sm:text-xs sm:w-16">
+                    <option
+                      key={location}
+                      className="text-sm sm:text-xs sm:w-16"
+                    >
                       {location}
                     </option>
                   ))}
@@ -150,35 +176,23 @@ export default function Example() {
           </div>
         </div>
       </main>
-      <Box className="rounded-md p-10 mt-5 z-0">
+      <Box className="rounded-md lg:p-10 md:p-5 sm:p-6 mt-5 z-0">
         <Heading textAlign={"center"} className="px-6 py-10 lg:px-8">
           Find the right job vacancies in Nigeria
         </Heading>
-        <Grid
-          className="lg:grid-cols-12 gap-4 md:grid-cols-8  sm:grid-cols-4"
+        <Grid 
+          className="lg:grid-cols-12 lg:p-10 md:p-6 sm:p-10 rounded-lg bg-grey/20 gap-4 md:grid-cols-8  sm:grid-cols-4"
           alignItems={"start"}
         >
-          <GridItem className="col-span-4">
-            <Job />
-          </GridItem>
-          <GridItem className="col-span-4">
-            <Job />
-          </GridItem>
-          <GridItem className="col-span-4">
-            <Job />
-          </GridItem>
-          <GridItem className="col-span-4">
-            <Job />
-          </GridItem>
-          <GridItem className="col-span-4">
-            <Job />
-          </GridItem>
-          <GridItem className="col-span-4">
-            <Job />
-          </GridItem>
-          <GridItem className="col-span-4">
-            <Job />
-          </GridItem>
+          {jobs.map(
+            (job, i) => (
+             
+              <GridItem className="col-span-4" key={job._id}>
+                <Job job= {job} />
+              </GridItem>
+            )
+            
+          )}
         </Grid>
       </Box>
     </div>

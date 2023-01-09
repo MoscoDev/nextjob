@@ -21,9 +21,11 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Input,
+  Heading,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Job from "./job-page-component/Job";
+import Notification from "./Notification";
 
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -79,24 +81,25 @@ function Navbar() {
         placement="right"
         onClose={onClose}
       >
-        {/* <DrawerOverlay /> */}
+        <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Notification</DrawerHeader>
+          <DrawerHeader className="border-y text-indigo-700 border-b-indigo-200/60">
+            <Heading fontSize={"large"}>Notifications</Heading>
+          </DrawerHeader>
 
           <DrawerBody>
-            <Job />
+            <Notification />
           </DrawerBody>
 
           <DrawerFooter>
             <Button
               variant="outline"
-              mr={3}
               onClick={() => setNotificationOpen(false)}
             >
               Cancel
             </Button>
-            <Button colorScheme="blue">Save</Button>
+         
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -177,9 +180,9 @@ function Navbar() {
                         to={item.to}
                         ref={item.action}
                         onClick={(e) => {
-                          e.preventDefault()
+                          e.preventDefault();
                           setMobileMenuOpen(false);
-                          item.onClick()
+                          item.onClick();
                         }}
                         className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
                       >
