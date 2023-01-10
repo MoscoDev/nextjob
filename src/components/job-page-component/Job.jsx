@@ -16,6 +16,8 @@ import {
 import React from "react";
 import { BookOpenIcon } from "@heroicons/react/24/solid";
 import { BookmarkIcon, CurrencyDollarIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import millify from "millify";
+import { Link } from "react-router-dom";
 
 function Job({
   job: {
@@ -26,10 +28,16 @@ function Job({
     organization,
     keywords,
     salary,
+    _id
   },
 }) {
+  
+  const options = {
+    precision: 3,
+    lowercase: true,
+  };
   return (
-    <Card variant={"filled"} className="rounded-lg " bg={"white"}>
+    <Card variant={"elevated"} className="rounded-lg " bg={"white"}>
       <CardHeader>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Flex columnGap={3} alignItems={"center"}>
@@ -37,7 +45,8 @@ function Job({
               size={"md"}
               colorScheme={"purple"}
               name={hiringFor}
-              src={organization}
+              src={organization?.logo}
+              className={"object-contain"}
             />
             <div>
               <Heading
@@ -85,21 +94,24 @@ function Job({
             <Flex gap={2} alignItems={"center"}>
               <CurrencyDollarIcon className="w-7 h-7 text-indigo-600" />
               <Text fontSize={"sm"} fontWeight={"semibold"}>
-                {` ₦${salary.min} -  ₦${salary.max} ${salary.type}`}
+                {` ₦${millify(salary.min, options)} -  ₦${millify(
+                  salary.max,
+                  options
+                )} ${salary.type}`}
               </Text>
             </Flex>
-            {/* <Flex gap={2} alignItems={"center"}>
+            <Flex gap={2} alignItems={"center"} className={"sm:hidden"}>
               <UserGroupIcon className="w-7 h-7 text-indigo-600" />
               <Text fontWeight={"semibold"} fontSize={"sm"}>
                 55 people applied
               </Text>
-            </Flex> */}
-            <a
-              href="#"
+            </Flex>
+            <Link
+              to={`/jobs/${_id}`}
               className="mt-1 flex w-fit items-center justify-center rounded-md border whitespace-nowrap border-transparent p-2 bg-indigo-600 lg:py-2 lg:px-4 lg:text-md text-sm font-normal text-white shadow-sm hover:bg-indigo-700"
             >
               Apply Now
-            </a>
+            </Link>
           </Flex>
         </Stack>
       </CardBody>

@@ -88,7 +88,7 @@ function Navbar() {
             <Heading fontSize={"large"}>Notifications</Heading>
           </DrawerHeader>
 
-          <DrawerBody>
+          <DrawerBody padding={3}>
             <Notification />
           </DrawerBody>
 
@@ -99,7 +99,6 @@ function Navbar() {
             >
               Cancel
             </Button>
-         
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

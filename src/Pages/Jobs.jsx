@@ -12,11 +12,13 @@ import {
   GridItem,
   Heading,
   Skeleton,
+  SkeletonCircle,
+  SkeletonText,
   Stack,
   Tooltip,
 } from "@chakra-ui/react";
 import { locations, categories } from "../../utils/location";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import job from "../assets/jobs.svg";
 import SearchBar from "../components/job-page-component/SearchBar";
 import Profile from "../components/job-page-component/Profile";
@@ -27,14 +29,32 @@ import Skills from "../components/job-page-component/Skills";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import Job from "../components/job-page-component/Job";
 import Auth from "../components/Auth";
+import axios from "axios";
+import { getJobs } from "../../utils/requests";
 
 function Jobs() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    //  get jobs with get jobs function in ../../utils/requests and  setJobs
+    getJobs().then((res) => {
+      setJobs(res.data);
+      setIsLoaded(true);
+    });
 
+    //  set isLoaded to true after 2 seconds
+    setIsLoaded(true);
+
+    //  set isLoggedIn to true if token is present in local storage
+    if (localStorage.getItem("token")) {
+      setisLoggedIn(true);
+    }
+  }, []);
   return (
     <div style={{ maxWidth: "100vw" }}>
       <Grid
+        variant={"outline"}
         className="sm:px-10 bg-grey/20 sm:py-0 lg:py-6 lg:px-18 lg:grid-cols-12 sm:grid-cols-6"
         alignItems={"start"}
         gap={4}
@@ -45,24 +65,21 @@ function Jobs() {
         >
           {!isLoggedIn && <Auth />}
           {isLoggedIn && (
-            <Stack paddingRight={"3"}
+            <Stack
+              paddingRight={"3"}
               id="scroller"
               onMouseOver={() => {
                 document
                   .getElementById("scroller")
-                  .classList.add(
-                    "scrollbar-thumb-indigo-600/25"
-                  );
-                 
-                
-                
+                  .classList.add("scrollbar-thumb-indigo-600/25");
               }}
-              onMouseLeave={()=>{ 
-                setTimeout(()=>{ document
-                  .getElementById("scroller")
-                  .classList.remove("scrollbar-thumb-indigo-600/25");},500)
-               
-                }}
+              onMouseLeave={() => {
+                setTimeout(() => {
+                  document
+                    .getElementById("scroller")
+                    .classList.remove("scrollbar-thumb-indigo-600/25");
+                }, 500);
+              }}
               className="scrollbar-thin ease scroll-smooth scrollbar-corner-rounded-md duration-1000 scrollbar-thumb-indigo-600/1 scrollbar-track-indigo-200/0 scrollbar-thumb-rounded"
               overflowY={"scroll"}
             >
@@ -76,20 +93,17 @@ function Jobs() {
           bg="transparent"
           className="lg:py-0 sm:px-0  lg:col-span-6 md:col-span-4 sm:col-span-6 gap-5 lg:block w-full"
         >
-          <Skeleton isLoaded={setTimeout(() => setIsLoaded(true), 2000)}>
-            <Stack gap={2}>
-              <SearchBar />
-              <Job />
-              <Job />
-              <Job />
-              <Job />
-              <Job />
-              <Job />
-              <Job />
-              <Job />
-              <Job />
-            </Stack>
-          </Skeleton>
+          <Stack gap={2}>
+            <SearchBar />
+
+            {/* <Skeleton isLoaded={isLoaded} fadeDuration={2}> */}
+            {jobs.map((job, i) => (
+              <Skeleton key={job._id} isLoaded={isLoaded}>
+                <Job job={job} />
+              </Skeleton>
+            ))}
+            {/* </Skeleton> */}
+          </Stack>
         </GridItem>
         <GridItem
           bg="transparent"

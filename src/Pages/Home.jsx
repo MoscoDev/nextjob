@@ -8,6 +8,7 @@ import { locations, categories } from "../../utils/location";
 import Job from "../components/job-page-component/Job";
 import { Box, Grid, GridItem, Heading } from "@chakra-ui/react";
 import axios from "axios";
+import { getJobs } from "../../utils/requests";
 
 const navigation = [
   { name: "Contact", href: "/contact" },
@@ -20,22 +21,11 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
-    var data = "";
+    //  get jobs with get jobs function in ../../utils/requests and  setJobs
+    getJobs("limit=9").then((res) => {
+      setJobs(res.data); 
+    });
 
-    var config = {
-      method: "get",
-      url: "https://nextjobs.onrender.com/api/v1/jobs/?limit=9",
-      data: data,
-    };
-
-    axios(config)
-      .then(function (response) {
-        setJobs(response.data.data);
-        console.log(jobs);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }, []);
 
   return (
@@ -176,25 +166,23 @@ export default function Example() {
           </div>
         </div>
       </main>
-      <Box className="rounded-md lg:p-10 md:p-5 sm:p-6 mt-5 z-0">
-        <Heading textAlign={"center"} className="px-6 py-10 lg:px-8">
-          Find the right job vacancies in Nigeria
-        </Heading>
-        <Grid 
-          className="lg:grid-cols-12 lg:p-10 md:p-6 sm:p-10 rounded-lg bg-grey/20 gap-4 md:grid-cols-8  sm:grid-cols-4"
-          alignItems={"start"}
-        >
-          {jobs.map(
-            (job, i) => (
-             
+      {jobs ? (
+        <Box className="rounded-md lg:p-10 md:p-5 sm:p-6 mt-5 z-0">
+          <Heading textAlign={"center"} className="px-6 py-10 lg:px-8">
+            Find the right job vacancies in Nigeria
+          </Heading>
+          <Grid
+            className="lg:grid-cols-12 lg:p-10 md:p-6 sm:p-10 rounded-lg bg-grey/20 gap-4 md:grid-cols-8  sm:grid-cols-4"
+            alignItems={"start"}
+          >
+            {jobs.map((job, i) => (
               <GridItem className="col-span-4" key={job._id}>
-                <Job job= {job} />
+                <Job job={job} />
               </GridItem>
-            )
-            
-          )}
-        </Grid>
-      </Box>
+            ))}
+          </Grid>
+        </Box>
+      ) : null}
     </div>
   );
 }
