@@ -7,10 +7,15 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { PencilIcon } from "@heroicons/react/24/outline";
-
+const darkmode = localStorage.getItem("chakra-ui-color-mode");
 function experience() {
   return (
-    <Card maxW="md" variant={"filled"} className="rounded-lg" bg={"white"}>
+    <Card
+      maxW="md"
+      variant={"filled"}
+      className="rounded-lg"
+      bg={darkmode === "light" ? "white" : ""}
+    >
       <CardHeader>
         <Flex
           flex="1"

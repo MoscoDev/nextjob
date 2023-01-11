@@ -23,9 +23,8 @@ export default function Example() {
   useEffect(() => {
     //  get jobs with get jobs function in ../../utils/requests and  setJobs
     getJobs("limit=9").then((res) => {
-      setJobs(res.data); 
+      setJobs(res.data);
     });
-
   }, []);
 
   return (
@@ -112,7 +111,7 @@ export default function Example() {
                   name="search"
                   type="text"
                   placeholder="job title, keywords, or company"
-                  className="mt-1 block w-full rounded-md border lg:text-sm text-xs font-normal border-gray-300 bg-white py-2 lg:py-2.5 lg:px-5 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                  className="mt-1 block w-full rounded-md border lg:text-base text-base font-normal border-gray-300 bg-white py-2 lg:py-2.5 lg:px-5 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 placeholder:text-base"
                 />
               </div>{" "}
               <div
@@ -123,7 +122,7 @@ export default function Example() {
                   id="categories"
                   name="categories"
                   autoComplete="country-name"
-                  className="mt-1 block w-full rounded-md border sm:text-sm text-sm lg:font-medium font-normal border-gray-300 bg-white py-2 lg:py-2.5 lg:px-5 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 "
+                  className="mt-1 block w-full rounded-md border lg:text-base text-base font-normal border-gray-300 bg-white py-2 lg:py-2.5 lg:px-5 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 placeholder:text-base"
                 >
                   {categories.map((category) => (
                     <option
@@ -144,7 +143,7 @@ export default function Example() {
                   name="location"
                   autoComplete="country-name"
                   defaultValue={"Lagos"}
-                  className="mt-1 block w-full rounded-md border sm:text-sm text-sm lg:font-medium font-normal border-gray-300 bg-white py-2 lg:py-2.5 lg:px-5 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 "
+                  className="mt-1 block w-full rounded-md border lg:text-base text-base font-normal border-gray-300 bg-white py-2 lg:py-2.5 lg:px-5 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 placeholder:text-base"
                 >
                   {locations.map((location) => (
                     <option
@@ -158,7 +157,7 @@ export default function Example() {
               </div>
               <a
                 href="#"
-                className="mt-3 flex items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-3 lg:px-8 lg:text-base text-xs font-normal text-white shadow-sm hover:bg-indigo-700"
+                className="mt-3 flex items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-3 lg:px-8 lg:text-base text-base font-normal text-white shadow-sm hover:bg-indigo-700"
               >
                 Find jobs
               </a>
@@ -167,12 +166,12 @@ export default function Example() {
         </div>
       </main>
       {jobs ? (
-        <Box className="rounded-md lg:p-10 md:p-5 sm:p-6 mt-5 z-0">
-          <Heading textAlign={"center"} className="px-6 py-10 lg:px-8">
+        <Box className="rounded-md lg:p-10  bg-grey/20 md:p-5 sm:p-6 mt-5 z-0">
+          <Heading textAlign={"center"} color={"blackAlpha.700"} className="px-6 py-10 lg:px-8">
             Find the right job vacancies in Nigeria
           </Heading>
           <Grid
-            className="lg:grid-cols-12 lg:p-10 md:p-6 sm:p-10 rounded-lg bg-grey/20 gap-4 md:grid-cols-8  sm:grid-cols-4"
+            className="lg:grid-cols-12 lg:p-10 md:p-6 sm:p-10 rounded-lg gap-4 md:grid-cols-8  sm:grid-cols-4"
             alignItems={"start"}
           >
             {jobs.map((job, i) => (

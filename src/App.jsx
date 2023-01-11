@@ -16,16 +16,20 @@ const token = localStorage.getItem("token");
 if (token) {
   setAuthToken(token);
 }
-// 2. Extend the theme to include custom colors, fonts, etc
-const colors = {
-  brand: {
-    900: "#4F46E5",
-    800: "#4338CA",
-    700: "#2a69ac",
-  },
-};
+localStorage.setItem("chakra-ui-color-mode","light");
 
-const theme = extendTheme({ colors });
+
+const theme = extendTheme({
+  colors: {
+    brand: {
+      900: "#4F46E5",
+      800: "#153e75",
+      700: "#4e46e55a",
+    },
+  },
+});
+
+
 
 function App() {
   return (

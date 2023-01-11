@@ -3,9 +3,11 @@ import React from 'react'
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { Link } from 'react-router-dom';
 
+
+const darkmode = localStorage.getItem("chakra-ui-color-mode");
 function Profile() {
   return (
-    <Card variant={"filled"} maxW="md" align="center" className="rounded-lg" bg={"white"}>
+    <Card variant={"filled"} maxW="md" align="center" className="rounded-lg" bg={darkmode==="light"?"white":""}>
       <CardHeader>
         <Flex >
           <Flex

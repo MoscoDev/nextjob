@@ -24,7 +24,7 @@ import {
 function Notification() {
   const status = "shortlisted"
   return (
-    <Card variant={"elevated"} className="rounded-lg px-3 bg-[#edf2f7ad]">
+    <Card variant={"filled"} className="rounded-lg px-3  bg-[#edf2f7ad]">
       <CardHeader paddingRight={"0"} paddingLeft={"0"} className="px-0">
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Flex columnGap={2} alignItems={"center"}>
@@ -76,9 +76,15 @@ function Notification() {
             expertise such as ours should not be a privilege.
           </Text>
           <HStack spacing={4}>
-            <Tag size={"md"}>Node.js</Tag>
-            <Tag size={"md"}>Javascript</Tag>
-            <Tag size={"md"}>SQL</Tag>
+            <Tag size={"md"} bg={"red.100"}>
+              Node.js
+            </Tag>
+            <Tag size={"md"} bg={"green.100"}>
+              Javascript
+            </Tag>
+            <Tag size={"md"} bg={"brand.700"}>
+              SQL
+            </Tag>
           </HStack>
         </Stack>
       </CardBody>

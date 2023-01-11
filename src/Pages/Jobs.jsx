@@ -50,7 +50,7 @@ function Jobs() {
     if (localStorage.getItem("token")) {
       setisLoggedIn(true);
     }
-  }, []);
+  }, [isLoggedIn]);
   return (
     <div style={{ maxWidth: "100vw" }}>
       <Grid
@@ -60,9 +60,8 @@ function Jobs() {
         gap={4}
       >
         <GridItem
-          className="lg:py-0 gap-5 h-[85vh] lg:grid hidden sticky top-[calc(78px+1.5rem)] lg:col-span-3"
-          bg="transparent"
-        >
+          className="pb-5 gap-5 h-[85vh] lg:grid hidden sticky top-[calc(78px+1.5rem)] lg:col-span-3"
+          bg="\transparent">
           {!isLoggedIn && <Auth />}
           {isLoggedIn && (
             <Stack
@@ -71,16 +70,17 @@ function Jobs() {
               onMouseOver={() => {
                 document
                   .getElementById("scroller")
-                  .classList.add("scrollbar-thumb-indigo-600/25");
+                  .classList.add("scrollbar-thumb-indigo-600");
               }}
               onMouseLeave={() => {
                 setTimeout(() => {
                   document
                     .getElementById("scroller")
-                    .classList.remove("scrollbar-thumb-indigo-600/25");
+                    .classList.remove("scrollbar-thumb-indigo-600");
                 }, 500);
               }}
-              className="scrollbar-thin ease scroll-smooth scrollbar-corner-rounded-md duration-1000 scrollbar-thumb-indigo-600/1 scrollbar-track-indigo-200/0 scrollbar-thumb-rounded"
+              className="scrollbar-thin ease scroll-smooth
+               scrollbar-corner-rounded-md duration-1000 scrollbar-thumb-indigo-600/1 scrollbar-track-indigo-200/0 scrollbar-thumb-rounded"
               overflowY={"scroll"}
             >
               <Profile />

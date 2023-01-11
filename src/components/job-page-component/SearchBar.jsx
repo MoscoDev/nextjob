@@ -13,13 +13,17 @@ import {
 } from "@chakra-ui/react";
 import { MagnifyingGlassIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-
+const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
 function SearchBar() {
     const [isLoading, setIsLoading] = useState(false)
   return (
     <Stack>
-      <Card variant={"filled"} className="rounded-lg" bg={"white"}>
+      <Card
+        variant={"filled"}
+        className="rounded-lg"
+        bg={darkmode === "light" ? "white" : ""}
+      >
         <CardHeader>
           <Flex
             justifyContent={"space-between"}

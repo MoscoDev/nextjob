@@ -7,6 +7,10 @@ import {
   Checkbox,
   Divider,
   Flex,
+  FormControl,
+  FormErrorIcon,
+  FormErrorMessage,
+  FormHelperText,
   Heading,
   HStack,
   Input,
@@ -15,14 +19,50 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import {  useNavigate } from "react-router-dom";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { login } from "../../utils/requests";
 function Auth() {
   const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isError, setisError] = useState(false)
+  const [errorMessage , setErrorMessage] =useState("")
+  // const navigate = useNavigate();
+
   const handleClick = () => setShow(!show);
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const data = {
+      email,
+      password,
+      rememberMe,
+    };
+    login(data)
+      .then((res ,err) => {
+       
+        // navigate to /jobs routes using window.location
+        window.location.href = "/jobs";
+
+
+      })
+      .catch((err) => {
+        setisError(true)
+        setErrorMessage(err.response.data.message)
+        console.log(err.response.data.message);
+      })
+  };
+
   return (
-    <Card variant={"filled"} className="rounded-lg h-[calc(100vh-78px)]" bg={"white"}>
+    <Card
+      variant={"filled"}
+      bg={"transparent"}
+      className="rounded-lg h-[calc(100vh-78px)]"
+    >
       <CardHeader>
         <Stack spacing={3}>
           <Heading className="text-indigo-700" size="md">
@@ -101,7 +141,6 @@ function Auth() {
         </Stack>
       </CardHeader>
 
-
       <CardBody>
         <Flex px="6" mb={"8"} align="center">
           <Divider />
@@ -115,41 +154,77 @@ function Auth() {
           </Text>
           <Divider />
         </Flex>
-        <Stack spacing={3}>
-          <Input placeholder="Email Address" size="md" pr="1rem" />
-          <InputGroup size="md">
-            <Input
-              pr="1rem"
-              type={show ? "text" : "password"}
-              placeholder="Enter password"
-            />
-            <InputRightElement width="4rem">
-              <Button variant={"ghost"} size="sm" onClick={handleClick}>
-                {show ? (
-                  <EyeSlashIcon className="w-3 h-3" />
-                ) : (
-                  <EyeIcon className="w-3 h-3" />
-                )}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-          <Link className="text-sm font-bold text-indigo-700">
-            {" "}
-            Forgot Password?
-          </Link>
-          <Checkbox size={"sm"} value="mid-level" fontWeight={"normal"}>
-            Keep me logged in
-          </Checkbox>
-          <a
-            href="#"
-            className="mt-1 flex w-full items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-2 lg:px-4 lg:text-md text-sm font-normal text-white shadow-sm hover:bg-indigo-700"
-          >
-            Log in
-          </a>
-        </Stack>
+        <form>
+          <FormControl isInvalid={false}>
+            <Stack spacing={3}>
+              <Input
+                placeholder="Email Address"
+                size="md"
+                id="email"
+                autoComplete="current-password"
+                pr="1rem"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <InputGroup size="md">
+                <Input
+                  id="password"
+                  pr="1rem"
+                  type={show ? "text" : "password"}
+                  placeholder="Enter password"
+                  autoComplete="current-password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <InputRightElement width="4rem">
+                  <Button variant={"ghost"} size="sm" onClick={handleClick}>
+                    {show ? (
+                      <EyeSlashIcon className="w-3 h-3" />
+                    ) : (
+                      <EyeIcon className="w-3 h-3" />
+                    )}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              {isError && (
+                <FormHelperText color={"red.400"}>
+                  {errorMessage}
+                </FormHelperText>
+              )}
+              <FormErrorMessage>{errorMessage}</FormErrorMessage>
+              <Link className="text-sm font-bold text-indigo-700">
+                {" "}
+                Forgot Password?
+              </Link>
+              <Checkbox
+                size={"sm"}
+                value="mid-level"
+                fontWeight={"normal"}
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              >
+                Keep me logged in
+              </Checkbox>
+              <Link
+                href="#"
+                onClick={handleLogin}
+                className="mt-1 flex w-full items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-2 lg:px-4 lg:text-md text-sm font-normal text-white shadow-sm hover:bg-indigo-700"
+              >
+                Log in
+              </Link>
+            </Stack>
+          </FormControl>
+        </form>
       </CardBody>
-      <CardFooter textAlign={"center"} bg={"chakra-subtle-bg"}>
-        <span className="text-sm w-full">
+      <CardFooter
+        textAlign={"center"}
+        bg={"chakra-subtle-bg"}
+        className={"-mx-5"}
+        alignItems={"baseline"}
+      >
+        <span className="text-sm w-full mr-3">
           Don't have an account?
           <Link to={"/sign-up"} className="text-sm text-indigo-700">
             {" "}

@@ -19,6 +19,8 @@ import { BookmarkIcon, CurrencyDollarIcon, UserGroupIcon } from "@heroicons/reac
 import millify from "millify";
 import { Link } from "react-router-dom";
 
+const darkmode = localStorage.getItem("chakra-ui-color-mode");
+
 function Job({
   job: {
     title,
@@ -28,7 +30,7 @@ function Job({
     organization,
     keywords,
     salary,
-    _id
+    _id,
   },
 }) {
   
@@ -37,14 +39,18 @@ function Job({
     lowercase: true,
   };
   return (
-    <Card variant={"elevated"} className="rounded-lg " bg={"white"}>
+    <Card
+      variant={"elevated"}
+      bg={darkmode === "light" ? "white" : ""}
+      className="rounded-lg "
+    >
       <CardHeader>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Flex columnGap={3} alignItems={"center"}>
             <Avatar
               size={"md"}
               colorScheme={"purple"}
-              name={hiringFor}
+              name={hiringFor || organization?.name}
               src={organization?.logo}
               className={"object-contain"}
             />
@@ -53,12 +59,12 @@ function Job({
                 fontSize="lg"
                 textAlign={"left"}
                 textTransform="capitalize"
-                className="text-gray-800 font-semibold"
+                className="font-semibold"
               >
                 {title}
               </Heading>
               <Text className="text-gray-400" fontSize={"sm"}>
-                {hiringFor + " - " + jobType}
+                {hiringFor || organization?.name + " - " + jobType}
               </Text>
             </div>
           </Flex>
@@ -73,10 +79,10 @@ function Job({
       </CardHeader>
       <CardBody>
         <Stack spacing={4}>
-          <Text fontSize={"sm"} noOfLines={[2, 2, 2]}>
+          <Text whiteSpace={""} noOfLines={[2, 2, 2]} fontSize={"sm"}>
             {description}
           </Text>
-          <HStack wrap={"wrap"} gap={2}>
+          <Flex wrap={"wrap"} rowGap={2} columnGap={2}>
             {keywords?.map((keyword, i) =>
               i < 5 ? (
                 <Tag key={keyword} size={"md"}>
@@ -84,7 +90,7 @@ function Job({
                 </Tag>
               ) : null
             )}
-          </HStack>
+          </Flex>
           <Divider orientation="horizontal" />
           <Flex
             alignItems={"center"}

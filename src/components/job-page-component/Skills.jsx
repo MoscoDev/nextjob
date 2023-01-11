@@ -12,6 +12,7 @@ import {
 import React, { useState } from "react";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
+const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
 function Skills() {
 
@@ -28,7 +29,12 @@ function Skills() {
         "Nest.Js",
       ]);
   return (
-    <Card maxW="md" variant={"filled"} className="rounded-lg" bg={"white"}>
+    <Card
+      maxW="md"
+      variant={"filled"}
+      className="rounded-lg"
+      bg={darkmode === "light" ? "white" : ""}
+    >
       <CardHeader>
         <Flex
           flex="1"
@@ -37,7 +43,12 @@ function Skills() {
           alignItems="center"
           flexWrap="wrap"
         >
-          <Heading className="text-indigo-700" size="md" textAlign={"center"} textTransform="capitalize">
+          <Heading
+            className="text-indigo-700"
+            size="md"
+            textAlign={"center"}
+            textTransform="capitalize"
+          >
             Skills
           </Heading>
           <Tooltip label={"Edit Skills"}>
@@ -47,21 +58,27 @@ function Skills() {
       </CardHeader>
       <CardBody>
         <Stack gap={2}>
-          {skills?.map(skill=><Flex key={skill} justifyContent={"space-between"} alignItems={"center"}>
-            <Flex columnGap={2} alignItems={"center"}>
-              <CheckCircleIcon className="w-6 h-6 fill-indigo-600/60" />
+          {skills?.map((skill) => (
+            <Flex
+              key={skill}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Flex columnGap={2} alignItems={"center"}>
+                <CheckCircleIcon className="w-6 h-6 fill-indigo-600/60" />
 
-              <Text
-                fontSize="sm"
-                textAlign={"left"}
-                textTransform="capitalize"
-                className="text-gray-800  font-semibold"
-              >
-                {skill}
-              </Text>
+                <Text
+                  fontSize="sm"
+                  textAlign={"left"}
+                  textTransform="capitalize"
+                  className="font-semibold"
+                >
+                  {skill}
+                </Text>
+              </Flex>
+              <Text>{"2 mos"}</Text>
             </Flex>
-            <Text>{"2 mos"}</Text>
-          </Flex>)}
+          ))}
         </Stack>
       </CardBody>
     </Card>
