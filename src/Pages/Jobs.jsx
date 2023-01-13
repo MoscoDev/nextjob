@@ -43,14 +43,11 @@ function Jobs() {
       setIsLoaded(true);
     });
 
-    //  set isLoaded to true after 2 seconds
-    setIsLoaded(true);
-
     //  set isLoggedIn to true if token is present in local storage
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token") && localStorage.getItem("token") != "undefined") {
       setisLoggedIn(true);
     }
-  }, [isLoggedIn]);
+  }, []);
   return (
     <div style={{ maxWidth: "100vw" }}>
       <Grid
@@ -80,7 +77,7 @@ function Jobs() {
                 }, 500);
               }}
               className="scrollbar-thin ease scroll-smooth
-               scrollbar-corner-rounded-md duration-1000 scrollbar-thumb-indigo-600/1 scrollbar-track-indigo-200/0 scrollbar-thumb-rounded"
+               scrollbar-corner-rounded-md transition-all  duration-1000 scrollbar-thumb-indigo-600/1 scrollbar-track-indigo-200/0 scrollbar-thumb-rounded"
               overflowY={"scroll"}
             >
               <Profile />
@@ -98,7 +95,7 @@ function Jobs() {
 
             {/* <Skeleton isLoaded={isLoaded} fadeDuration={2}> */}
             {jobs.map((job, i) => (
-              <Skeleton key={job._id} isLoaded={isLoaded}>
+              <Skeleton key={job?._id} fadeDuration={2} isLoaded={isLoaded}>
                 <Job job={job} />
               </Skeleton>
             ))}

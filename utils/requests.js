@@ -26,3 +26,12 @@ export const login = async (data) => {
     return response.data;
   
 };
+
+export const saveJob = async (id) => {
+  // login to api
+  const response = await axios.post("/savedjobs/"+id);  
+  console.log(response.data);
+  return response.data;
+};
+
+// get

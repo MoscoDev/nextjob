@@ -16,8 +16,7 @@ const token = localStorage.getItem("token");
 if (token) {
   setAuthToken(token);
 }
-localStorage.setItem("chakra-ui-color-mode","light");
-
+localStorage.setItem("chakra-ui-color-mode", "light");
 
 const theme = extendTheme({
   colors: {
@@ -28,8 +27,6 @@ const theme = extendTheme({
     },
   },
 });
-
-
 
 function App() {
   return (

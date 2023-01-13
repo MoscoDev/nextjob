@@ -15,7 +15,7 @@ import { MagnifyingGlassIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
-function SearchBar() {
+function SearchBar({}) {
     const [isLoading, setIsLoading] = useState(false)
   return (
     <Stack>
@@ -38,7 +38,6 @@ function SearchBar() {
             >
               Search Jobs
             </Heading>
-            <Button size={"sm"}>Clear all</Button>
           </Flex>
         </CardHeader>
         <CardBody>
@@ -49,12 +48,12 @@ function SearchBar() {
                   pointerEvents="none"
                   fontSize={"sm"}
                   children={
-                    <MagnifyingGlassIcon className="h-5 w-5" color="gray.300" />
+                    <MagnifyingGlassIcon className="h-5 w-5 text-indigo-600" color="gray.300" />
                   }
                 />
                 <Input
                   focusBorderColor="brand.800"
-                  type="tel"
+                  type=""
                   placeholder="job title, keywords, or company"
                 />
               </InputGroup>

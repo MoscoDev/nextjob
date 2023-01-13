@@ -156,7 +156,7 @@ export default function Example() {
                 </select>
               </div>
               <a
-                href="#"
+                href="/jobs"
                 className="mt-3 flex items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-3 lg:px-8 lg:text-base text-base font-normal text-white shadow-sm hover:bg-indigo-700"
               >
                 Find jobs

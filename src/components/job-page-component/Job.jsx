@@ -12,12 +12,18 @@ import {
   StackDivider,
   Tag,
   Text,
+  useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { BookOpenIcon } from "@heroicons/react/24/solid";
-import { BookmarkIcon, CurrencyDollarIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import {
+  BookmarkIcon,
+  CurrencyDollarIcon,
+  UserGroupIcon,
+} from "@heroicons/react/24/outline";
 import millify from "millify";
 import { Link } from "react-router-dom";
+import { saveJob } from "../../../utils/requests";
 
 const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
@@ -33,10 +39,37 @@ function Job({
     _id,
   },
 }) {
-  
   const options = {
     precision: 3,
     lowercase: true,
+  };
+  const [saved, setSaved] = useState("save A job");
+  const toast = useToast();
+  const saveAJob = () => {
+    saveJob(_id)
+      .then((result) => {
+        setSaved("saved");
+        toast({
+          title: "job saved.",
+          description: "success",
+          status: "success",
+          duration: 6000,
+          isClosable: true,
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: "Failed",
+          description: err?.response.data.data,
+          status: "error",
+          duration: 3000,
+          position: "top-right",
+          isClosable: true,
+          colorScheme: "orange",
+          variant: "top-accent",
+        });
+      });
   };
   return (
     <Card
@@ -69,11 +102,12 @@ function Job({
             </div>
           </Flex>
           <Button
+            onClick={() => saveAJob(_id)}
             leftIcon={<BookmarkIcon className="w-5 h-5" />}
             variant="solid"
             size={"sm"}
           >
-            Save job
+            {saved}
           </Button>
         </Flex>
       </CardHeader>
