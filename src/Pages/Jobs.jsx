@@ -30,21 +30,29 @@ import { PencilIcon } from "@heroicons/react/24/solid";
 import Job from "../components/job-page-component/Job";
 import Auth from "../components/Auth";
 import axios from "axios";
-import { getJobs } from "../../utils/requests";
+import { getJobs, getSavedJobs } from "../../utils/requests";
 
 function Jobs() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [jobs, setJobs] = useState([]);
+  const [savedJobs, setSavedJobs] = useState([]);
   useEffect(() => {
     //  get jobs with get jobs function in ../../utils/requests and  setJobs
+
     getJobs().then((res) => {
+     
       setJobs(res.data);
       setIsLoaded(true);
     });
-
+ getSavedJobs().then((res) => {
+   setSavedJobs(res.data);
+ });
     //  set isLoggedIn to true if token is present in local storage
-    if (localStorage.getItem("token") && localStorage.getItem("token") != "undefined") {
+    if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("token") != "undefined"
+    ) {
       setisLoggedIn(true);
     }
   }, []);
@@ -58,7 +66,8 @@ function Jobs() {
       >
         <GridItem
           className="pb-5 gap-5 h-[85vh] lg:grid hidden sticky top-[calc(78px+1.5rem)] lg:col-span-3"
-          bg="\transparent">
+          bg="\transparent"
+        >
           {!isLoggedIn && <Auth />}
           {isLoggedIn && (
             <Stack
@@ -88,7 +97,7 @@ function Jobs() {
         </GridItem>
         <GridItem
           bg="transparent"
-          className="lg:py-0 sm:px-0  lg:col-span-6 md:col-span-4 sm:col-span-6 gap-5 lg:block w-full"
+          className="lg:py-0 md:py-6 sm:px-0 lg:col-span-6 md:col-span-4 sm:col-span-6 gap-5 lg:block w-full"
         >
           <Stack gap={2}>
             <SearchBar />
@@ -96,7 +105,12 @@ function Jobs() {
             {/* <Skeleton isLoaded={isLoaded} fadeDuration={2}> */}
             {jobs.map((job, i) => (
               <Skeleton key={job?._id} fadeDuration={2} isLoaded={isLoaded}>
-                <Job job={job} />
+                <Job
+                  job={job}
+                  saved={savedJobs.some(
+                    (savedjob) => savedjob?.job._id === job._id
+                  )}
+                />
               </Skeleton>
             ))}
             {/* </Skeleton> */}
@@ -104,7 +118,7 @@ function Jobs() {
         </GridItem>
         <GridItem
           bg="transparent"
-          className="lg:py-0 gap-5 lg:col-span-3 md:col-span-2 lg:block md:block sm:hidden  top-[calc(78px+1.5rem)] sticky"
+          className="pb-5 gap-5 h-[85vh] md:block lg:grid hidden sticky top-[calc(78px+1.5rem)] md:col-span-2 lg:col-span-3"
         >
           <Skeleton isLoaded={setTimeout(() => setIsLoaded(true), 2000)}>
             <Stack>

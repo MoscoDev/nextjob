@@ -30,8 +30,17 @@ export const login = async (data) => {
 export const saveJob = async (id) => {
   // login to api
   const response = await axios.post("/savedjobs/"+id);  
-  console.log(response.data);
+ 
   return response.data;
 };
 
-// get
+export const getSavedJobs = async (id)=>{
+   const response = await axios.get("/savedjobs");
+   return response.data;
+}
+
+
+export const deleteSavedJob = async (id) => {
+  const response = await axios.delete("/savedjobs/"+id);
+  return response.data;
+};

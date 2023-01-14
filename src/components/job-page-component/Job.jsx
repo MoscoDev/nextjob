@@ -14,7 +14,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BookOpenIcon } from "@heroicons/react/24/solid";
 import {
   BookmarkIcon,
@@ -23,7 +23,7 @@ import {
 } from "@heroicons/react/24/outline";
 import millify from "millify";
 import { Link } from "react-router-dom";
-import { saveJob } from "../../../utils/requests";
+import { deleteSavedJob, getSavedJobs, saveJob } from "../../../utils/requests";
 
 const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
@@ -38,20 +38,21 @@ function Job({
     salary,
     _id,
   },
+  saved,
 }) {
   const options = {
     precision: 3,
     lowercase: true,
   };
-  const [saved, setSaved] = useState("save A job");
+  const [savedJob, setSavedJob] = useState(false);
   const toast = useToast();
   const saveAJob = () => {
     saveJob(_id)
       .then((result) => {
-        setSaved("saved");
+        setSavedJob(_id);
         toast({
           title: "job saved.",
-          description: "success",
+          description: "saved to my jobs",
           status: "success",
           duration: 6000,
           isClosable: true,
@@ -71,6 +72,38 @@ function Job({
         });
       });
   };
+  const unsaveAJob = () => {
+    deleteSavedJob(_id)
+      .then((result) => {
+        setSavedJob(false);
+        toast({
+          title: "job saved.",
+          description: "removed from my jobs",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: "Failed",
+          description: err?.response.data.data,
+          status: "error",
+          duration: 3000,
+          position: "top-right",
+          isClosable: true,
+          colorScheme: "orange",
+          variant: "top-accent",
+        });
+      });
+  };
+  useEffect(() => {
+    if (saved) {
+      setSavedJob(_id);
+    }
+  }, []);
+
   return (
     <Card
       variant={"elevated"}
@@ -102,12 +135,19 @@ function Job({
             </div>
           </Flex>
           <Button
-            onClick={() => saveAJob(_id)}
+            onClick={() => {
+              if (savedJob === _id) {
+                unsaveAJob(_id);
+                return
+              }
+              saveAJob(_id);
+            }}
             leftIcon={<BookmarkIcon className="w-5 h-5" />}
+            bg={savedJob === _id ? "green.100" : null}
             variant="solid"
             size={"sm"}
           >
-            {saved}
+            {savedJob === _id ? "saved" : "save job"}
           </Button>
         </Flex>
       </CardHeader>
