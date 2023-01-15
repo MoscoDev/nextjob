@@ -6,9 +6,10 @@ import {
     Tooltip
 } from "@chakra-ui/react";
 import React from "react";
+import { Duration } from "duration-converter";
 import { PencilIcon } from "@heroicons/react/24/outline";
 const darkmode = localStorage.getItem("chakra-ui-color-mode");
-function experience() {
+function experience({experiences}) {
   return (
     <Card
       maxW="md"
@@ -39,52 +40,37 @@ function experience() {
       </CardHeader>
       <CardBody>
         <Stack gap={2}>
-          <Flex justifyContent={"space-between"} alignItems={"center"}>
-            <Flex columnGap={2} alignItems={"center"}>
-              <Avatar
-                size={"md"}
-                name="Airbnb"
-                src="https://banner2.cleanpng.com/20180605/oot/kisspng-airbnb-logo-coupon-privately-held-company-airbnb-logo-5b167f0c6a7270.541603821528200972436.jpg"
-              />
-              <div>
-                <Text
-                  fontSize="sm"
-                  textAlign={"left"}
-                  textTransform="capitalize"
-                  className="text-gray-800 font-semibold"
-                >
-                  Junior Designer
-                </Text>
-                <Text className="text-gray-400" fontSize={"sm"}>
-                  {"Airbnb, inc" + " - " + "Fulltime"}
-                </Text>
-              </div>
+          {experiences?.map((ex, i) => (
+            <Flex key={i} justifyContent={"space-between"} alignItems={"top"}>
+              <Flex columnGap={"0.5"} alignItems={"center"}>
+                <Avatar size={"md"} 
+                name={ex?.companyName.split(",")[0]}src="" />
+                <div>
+                  <Text
+                    fontSize="sm"
+                    textAlign={"left"}
+                    textTransform="capitalize"
+                    className="text-gray-800 font-bold"
+                  >
+                    {ex?.jobTitle}
+                  </Text>
+                  <Text className="text-gray-400" fontSize={"sm"}>
+                    {ex?.companyName + " - " + "Fulltime"}
+                  </Text>
+                </div>
+              </Flex>
+              <Text
+                fontSize="sm"
+                alignItems={"flex-start"}
+                fontWeight={""}
+                whiteSpace={"nowrap"}
+              >
+                {Duration.fromSeconds(
+                  ex?.duration * 365 * 24 * 60 * 60
+                ).toString()}
+              </Text>
             </Flex>
-            <Text>{"2 mos"}</Text>
-          </Flex>
-          <Flex justifyContent={"space-between"} alignItems={"center"}>
-            <Flex columnGap={2} alignItems={"center"}>
-              <Avatar
-                size={"md"}
-                name="Netflix"
-                src="https://icon2.cleanpng.com/20180512/rbw/kisspng-logo-brand-line-5af686b81ae832.3337453015261057841102.jpg"
-              />
-              <div>
-                <Text
-                  fontSize="sm"
-                  textAlign={"left"}
-                  textTransform="capitalize"
-                  className="text-gray-800 font-semibold"
-                >
-                  Junior Designer
-                </Text>
-                <Text className="text-gray-400" fontSize={"sm"}>
-                  {"Netflix" + " - " + "internship"}
-                </Text>
-              </div>
-            </Flex>
-            <Text>{"6 mos"}</Text>
-          </Flex>
+          ))}
         </Stack>
       </CardBody>
     </Card>

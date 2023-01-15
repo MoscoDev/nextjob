@@ -14,20 +14,9 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
-function Skills() {
+function Skills({skills}) {
 
-    const [skills, setSkills] = useState(
-      [
-        "typescript",
-        "javascript",
-        "backend development",
-        "Node.js",
-        "React.js",
-        "frontend development",
-        "docker",
-        "Express.js",
-        "Nest.Js",
-      ]);
+    
   return (
     <Card
       maxW="md"
@@ -57,7 +46,7 @@ function Skills() {
         </Flex>
       </CardHeader>
       <CardBody>
-        <Stack gap={2}>
+        <Flex direction={"row"} wrap={"wrap"} gap={2}>
           {skills?.map((skill) => (
             <Flex
               key={skill}
@@ -71,15 +60,16 @@ function Skills() {
                   fontSize="sm"
                   textAlign={"left"}
                   textTransform="capitalize"
+                  whiteSpace={"break-spaces"}
                   className="font-semibold"
                 >
                   {skill}
                 </Text>
               </Flex>
-              <Text>{"2 mos"}</Text>
+              {/* <Text whiteSpace={"nowrap"}>{"2 mos"}</Text> */}
             </Flex>
           ))}
-        </Stack>
+        </Flex>
       </CardBody>
     </Card>
   );

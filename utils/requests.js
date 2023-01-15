@@ -44,3 +44,9 @@ export const deleteSavedJob = async (id) => {
   const response = await axios.delete("/savedjobs/"+id);
   return response.data;
 };
+
+
+export const getUserProfile = async (id) => {
+  const response = await axios.get("users/"+id);
+  return response.data;
+};

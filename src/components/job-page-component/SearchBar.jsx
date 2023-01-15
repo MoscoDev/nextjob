@@ -22,6 +22,7 @@ import {
   Skeleton,
   CheckboxGroup,
   Checkbox,
+  DrawerFooter,
 } from "@chakra-ui/react";
 import { MagnifyingGlassIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
@@ -32,38 +33,35 @@ const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
 function SearchBar({}) {
   const [isLoading, setIsLoading] = useState(false);
-   const [size, setSize] = React.useState("");
-   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [size, setSize] = React.useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-   const handleClick = (newSize) => {
-     setSize(newSize);
-     onOpen();
-   };
+  const handleClick = (newSize) => {
+    setSize(newSize);
+    onOpen();
+  };
   return (
     <>
-      <Drawer onClose={onClose} isOpen={isOpen} size={"full"}>
+      <Drawer onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader>
-            <Heading
-              className="text-indigo-700"
-              size="lg"
-              textTransform="capitalize"
-            >
+          <DrawerHeader className="border-y text-indigo-700 border-b-indigo-200/60">
+            <Heading fontSize="large" textTransform="capitalize">
               Filters
             </Heading>
             <DrawerCloseButton />
           </DrawerHeader>
-          <DrawerBody>
+          <DrawerBody padding={3}>
             <Skeleton isLoaded={true}>
-              <Stack>
+              <Stack padding={"0"}>
                 <Card
                   maxW="md"
                   variant={"filled"}
                   className="rounded-lg"
                   bg={"white"}
+                  padding={0}
                 >
-                  <CardHeader>
+                  <CardHeader padding={3}>
                     <Stack spacing={4} direction={"column"}>
                       <Flex
                         justifyContent={"space-between"}
@@ -124,12 +122,13 @@ function SearchBar({}) {
                   </CardHeader>
                 </Card>
                 <Card
+                  padding={0}
                   maxW="md"
                   variant={"filled"}
                   className="rounded-lg"
                   bg={"white"}
                 >
-                  <CardHeader>
+                  <CardHeader padding={3}>
                     <Stack gap={3}>
                       <Flex
                         justifyContent={"space-between"}
@@ -201,8 +200,13 @@ function SearchBar({}) {
                     </Stack>
                   </CardHeader>
                 </Card>
-                <Card variant={"filled"} className="rounded-lg" bg={"white"}>
-                  <CardHeader>
+                <Card
+                  padding={0}
+                  variant={"filled"}
+                  className="rounded-lg"
+                  bg={"white"}
+                >
+                  <CardHeader padding={3}>
                     <Stack spacing={4} direction={"column"}>
                       <Flex
                         justifyContent={"space-between"}
@@ -265,9 +269,16 @@ function SearchBar({}) {
               </Stack>
             </Skeleton>
           </DrawerBody>
+          <DrawerFooter
+            onClick={onClose}
+            className="bg-indigo-600 text-white"
+            justifyContent={"center"}
+          >
+            Apply Filter
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
-      <Stack position={"sticky"} top={"60px"} zIndex={"10"} borderBottom={"1"}>
+      <Stack borderBottom={"1"}>
         <Card
           variant={"filled"}
           className="rounded-lg"

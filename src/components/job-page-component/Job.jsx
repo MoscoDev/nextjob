@@ -45,8 +45,10 @@ function Job({
     lowercase: true,
   };
   const [savedJob, setSavedJob] = useState(false);
+  const [saveLoading, setSaveLoading] = useState(false);
   const toast = useToast();
   const saveAJob = () => {
+    setSaveLoading(true);
     saveJob(_id)
       .then((result) => {
         setSavedJob(_id);
@@ -58,6 +60,7 @@ function Job({
           isClosable: true,
           position: "top-right",
         });
+        setSaveLoading(false);
       })
       .catch((err) => {
         toast({
@@ -70,20 +73,23 @@ function Job({
           colorScheme: "orange",
           variant: "top-accent",
         });
+        setSaveLoading(false);
       });
   };
   const unsaveAJob = () => {
+    setSaveLoading(true);
     deleteSavedJob(_id)
       .then((result) => {
         setSavedJob(false);
         toast({
-          title: "job saved.",
+          title: "Removed.",
           description: "removed from my jobs",
           status: "success",
           duration: 4000,
           isClosable: true,
           position: "top-right",
         });
+        setSaveLoading(false);
       })
       .catch((err) => {
         toast({
@@ -96,6 +102,7 @@ function Job({
           colorScheme: "orange",
           variant: "top-accent",
         });
+        setSaveLoading(false);
       });
   };
   useEffect(() => {
@@ -135,10 +142,11 @@ function Job({
             </div>
           </Flex>
           <Button
+            isLoading={saveLoading}
             onClick={() => {
               if (savedJob === _id) {
                 unsaveAJob(_id);
-                return
+                return;
               }
               saveAJob(_id);
             }}

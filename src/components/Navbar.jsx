@@ -74,7 +74,7 @@ function Navbar() {
     },
   ];
   return (
-    <div className="sticky top-0 z-10 bg-white">
+    <div className="sticky top-0 z-[100] bg-white">
       <Drawer
         isOpen={isOpen}
         onOpen={onOpen}

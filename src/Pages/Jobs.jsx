@@ -30,24 +30,26 @@ import { PencilIcon } from "@heroicons/react/24/solid";
 import Job from "../components/job-page-component/Job";
 import Auth from "../components/Auth";
 import axios from "axios";
-import { getJobs, getSavedJobs } from "../../utils/requests";
+import { getJobs, getSavedJobs, getUserProfile } from "../../utils/requests";
 
 function Jobs() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [jobs, setJobs] = useState([]);
   const [savedJobs, setSavedJobs] = useState([]);
+  const [profile, setProfile] = useState(null);
   useEffect(() => {
     //  get jobs with get jobs function in ../../utils/requests and  setJobs
-
+    getUserProfile("6397ccb3f56ecc5a25a5f377").then((res) => {
+      setProfile(res.data);
+    });
     getJobs().then((res) => {
-     
       setJobs(res.data);
       setIsLoaded(true);
     });
- getSavedJobs().then((res) => {
-   setSavedJobs(res.data);
- });
+    getSavedJobs().then((res) => {
+      setSavedJobs(res.data);
+    });
     //  set isLoggedIn to true if token is present in local storage
     if (
       localStorage.getItem("token") &&
@@ -89,9 +91,15 @@ function Jobs() {
                scrollbar-corner-rounded-md transition-all  duration-1000 scrollbar-thumb-indigo-600/1 scrollbar-track-indigo-200/0 scrollbar-thumb-rounded"
               overflowY={"scroll"}
             >
-              <Profile />
-              <Experience />
-              <Skills />
+              <Profile
+                name={`${profile?.firstName} ${profile?.lastName}`}
+                role={
+                  profile?.experiences[profile?.experiences.length - 1].jobTitle
+                }
+                img={""}
+              />
+              <Experience experiences={profile?.experiences} />
+              <Skills skills={profile?.skills} />
             </Stack>
           )}
         </GridItem>
@@ -100,7 +108,9 @@ function Jobs() {
           className="lg:py-0 md:py-6 sm:px-0 lg:col-span-6 md:col-span-4 sm:col-span-6 gap-5 lg:block w-full"
         >
           <Stack gap={2}>
-            <SearchBar />
+            <div className="top-16 sticky z-10">
+              <SearchBar />
+            </div>
 
             {/* <Skeleton isLoaded={isLoaded} fadeDuration={2}> */}
             {jobs.map((job, i) => (
