@@ -1,10 +1,7 @@
 import {
-  Box,
   Button,
   Card,
-  CardBody,
   CardHeader,
-  Center,
   Checkbox,
   CheckboxGroup,
   Flex,
@@ -12,24 +9,17 @@ import {
   GridItem,
   Heading,
   Skeleton,
-  SkeletonCircle,
-  SkeletonText,
   Stack,
-  Tooltip,
 } from "@chakra-ui/react";
-import { locations, categories } from "../../utils/location";
-import React, { useEffect, useState } from "react";
-import job from "../assets/jobs.svg";
+import { locations } from "../../utils/location";
+import { useEffect, useState } from "react";
 import SearchBar from "../components/job-page-component/SearchBar";
 import Profile from "../components/job-page-component/Profile";
 import Experience from "../components/job-page-component/Experience";
 
-import Navbar from "../components/Navbar";
 import Skills from "../components/job-page-component/Skills";
-import { PencilIcon } from "@heroicons/react/24/solid";
 import Job from "../components/job-page-component/Job";
 import Auth from "../components/Auth";
-import axios from "axios";
 import { getJobs, getSavedJobs, getUserProfile } from "../../utils/requests";
 
 function Jobs() {
@@ -38,10 +28,12 @@ function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [savedJobs, setSavedJobs] = useState([]);
   const [profile, setProfile] = useState(null);
+  const [isProfileLoaded, setIsProfileLoaded] = useState(null);
   useEffect(() => {
     //  get jobs with get jobs function in ../../utils/requests and  setJobs
     getUserProfile("6397ccb3f56ecc5a25a5f377").then((res) => {
       setProfile(res.data);
+      setIsProfileLoaded(true)
     });
     getJobs().then((res) => {
       setJobs(res.data);
@@ -97,9 +89,13 @@ function Jobs() {
                   profile?.experiences[profile?.experiences.length - 1].jobTitle
                 }
                 img={""}
+                isLoaded={isProfileLoaded}
               />
-              <Experience experiences={profile?.experiences} />
-              <Skills skills={profile?.skills} />
+              <Experience
+                experiences={profile?.experiences}
+                isLoaded={isProfileLoaded}
+              />
+              <Skills skills={profile?.skills} isLoaded={isProfileLoaded} />
             </Stack>
           )}
         </GridItem>
@@ -114,14 +110,16 @@ function Jobs() {
 
             {/* <Skeleton isLoaded={isLoaded} fadeDuration={2}> */}
             {jobs.map((job, i) => (
-              <Skeleton key={job?._id} fadeDuration={2} isLoaded={isLoaded}>
+              
                 <Job
+                  key={job?._id}
+                  isLoaded={isLoaded}
                   job={job}
                   saved={savedJobs.some(
                     (savedjob) => savedjob?.job._id === job._id
                   )}
                 />
-              </Skeleton>
+              
             ))}
             {/* </Skeleton> */}
           </Stack>

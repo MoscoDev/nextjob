@@ -8,6 +8,7 @@ import {
   Flex,
   Heading,
   HStack,
+  Skeleton,
   Stack,
   StackDivider,
   Tag,
@@ -37,7 +38,7 @@ function Job({
     keywords,
     salary,
     _id,
-  },
+  },isLoaded,
   saved,
 }) {
   const options = {
@@ -112,98 +113,101 @@ function Job({
   }, []);
 
   return (
-    <Card
-      variant={"elevated"}
-      bg={darkmode === "light" ? "white" : ""}
-      className="rounded-lg "
-    >
-      <CardHeader>
-        <Flex justifyContent={"space-between"} alignItems={"center"}>
-          <Flex columnGap={3} alignItems={"center"}>
-            <Avatar
-              size={"md"}
-              colorScheme={"purple"}
-              name={hiringFor || organization?.name}
-              src={organization?.logo}
-              className={"object-contain"}
-            />
-            <div>
-              <Heading
-                fontSize="lg"
-                textAlign={"left"}
-                textTransform="capitalize"
-                className="font-semibold"
-              >
-                {title}
-              </Heading>
-              <Text className="text-gray-400" fontSize={"sm"}>
-                {hiringFor || organization?.name + " - " + jobType}
-              </Text>
-            </div>
-          </Flex>
-          <Button
-            isLoading={saveLoading}
-            onClick={() => {
-              if (savedJob === _id) {
-                unsaveAJob(_id);
-                return;
-              }
-              saveAJob(_id);
-            }}
-            leftIcon={<BookmarkIcon className="w-5 h-5" />}
-            bg={savedJob === _id ? "green.100" : null}
-            variant="solid"
-            size={"sm"}
-          >
-            {savedJob === _id ? "saved" : "save job"}
-          </Button>
-        </Flex>
-      </CardHeader>
-      <CardBody>
-        <Stack spacing={4}>
-          <Text whiteSpace={""} noOfLines={[2, 2, 2]} fontSize={"sm"}>
-            {description}
-          </Text>
-          <Flex wrap={"wrap"} rowGap={2} columnGap={2}>
-            {keywords?.map((keyword, i) =>
-              i < 5 ? (
-                <Tag key={keyword} size={"md"}>
-                  {keyword}
-                </Tag>
-              ) : null
-            )}
-          </Flex>
-          <Divider orientation="horizontal" />
-          <Flex
-            alignItems={"center"}
-            justifyContent={"space-between"}
-            className="align-middle"
-          >
-            <Flex gap={2} alignItems={"center"}>
-              <CurrencyDollarIcon className="w-7 h-7 text-indigo-600" />
-              <Text fontSize={"sm"} fontWeight={"semibold"}>
-                {` ₦${millify(salary.min, options)} -  ₦${millify(
-                  salary.max,
-                  options
-                )} ${salary.type}`}
-              </Text>
+    <Skeleton isLoaded={isLoaded || setTimeout(()=>true,2000)
+    }>
+      <Card
+        variant={"elevated"}
+        bg={darkmode === "light" ? "white" : ""}
+        className="rounded-lg "
+      >
+        <CardHeader>
+          <Flex justifyContent={"space-between"} alignItems={"center"}>
+            <Flex columnGap={3} alignItems={"center"}>
+              <Avatar
+                size={"md"}
+                colorScheme={"purple"}
+                name={hiringFor || organization?.name}
+                src={organization?.logo}
+                className={"object-contain"}
+              />
+              <div>
+                <Heading
+                  fontSize="lg"
+                  textAlign={"left"}
+                  textTransform="capitalize"
+                  className="font-semibold"
+                >
+                  {title}
+                </Heading>
+                <Text className="text-gray-400" fontSize={"sm"}>
+                  {hiringFor || organization?.name + " - " + jobType}
+                </Text>
+              </div>
             </Flex>
-            <Flex gap={2} alignItems={"center"} className={"sm:hidden"}>
-              <UserGroupIcon className="w-7 h-7 text-indigo-600" />
-              <Text fontWeight={"semibold"} fontSize={"sm"}>
-                55 people applied
-              </Text>
-            </Flex>
-            <Link
-              to={`/jobs/${_id}`}
-              className="mt-1 flex w-fit items-center justify-center rounded-md border whitespace-nowrap border-transparent p-2 bg-indigo-600 lg:py-2 lg:px-4 lg:text-md text-sm font-normal text-white shadow-sm hover:bg-indigo-700"
+            <Button
+              isLoading={saveLoading}
+              onClick={() => {
+                if (savedJob === _id) {
+                  unsaveAJob(_id);
+                  return;
+                }
+                saveAJob(_id);
+              }}
+              leftIcon={<BookmarkIcon className="w-5 h-5" />}
+              bg={savedJob === _id ? "green.100" : null}
+              variant="solid"
+              size={"sm"}
             >
-              Apply Now
-            </Link>
+              {savedJob === _id ? "saved" : "save job"}
+            </Button>
           </Flex>
-        </Stack>
-      </CardBody>
-    </Card>
+        </CardHeader>
+        <CardBody>
+          <Stack spacing={4}>
+            <Text whiteSpace={""} noOfLines={[2, 2, 2]} fontSize={"sm"}>
+              {description}
+            </Text>
+            <Flex wrap={"wrap"} rowGap={2} columnGap={2}>
+              {keywords?.map((keyword, i) =>
+                i < 5 ? (
+                  <Tag key={keyword} size={"md"}>
+                    {keyword}
+                  </Tag>
+                ) : null
+              )}
+            </Flex>
+            <Divider orientation="horizontal" />
+            <Flex
+              alignItems={"center"}
+              justifyContent={"space-between"}
+              className="align-middle"
+            >
+              <Flex gap={2} alignItems={"center"}>
+                <CurrencyDollarIcon className="w-7 h-7 text-indigo-600" />
+                <Text fontSize={"sm"} fontWeight={"semibold"}>
+                  {` ₦${millify(salary.min, options)} -  ₦${millify(
+                    salary.max,
+                    options
+                  )} ${salary.type}`}
+                </Text>
+              </Flex>
+              <Flex gap={2} alignItems={"center"} className={"sm:hidden"}>
+                <UserGroupIcon className="w-7 h-7 text-indigo-600" />
+                <Text fontWeight={"semibold"} fontSize={"sm"}>
+                  55 people applied
+                </Text>
+              </Flex>
+              <Link
+                to={`/jobs/${_id}`}
+                className="mt-1 flex w-fit items-center justify-center rounded-md border whitespace-nowrap border-transparent p-2 bg-indigo-600 lg:py-2 lg:px-4 lg:text-md text-sm font-normal text-white shadow-sm hover:bg-indigo-700"
+              >
+                Apply Now
+              </Link>
+            </Flex>
+          </Stack>
+        </CardBody>
+      </Card>
+    </Skeleton>
   );
 }
 
