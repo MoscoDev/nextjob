@@ -5,12 +5,17 @@ import {
     Text,
     Tooltip
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Duration } from "duration-converter";
 import { PencilIcon } from "@heroicons/react/24/outline";
 const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
 function experience({ experiences, isLoaded }) {
+
+ 
+  
+  let re = experiences?.reverse();
+  console.log(re); 
   return (
     <Skeleton isLoaded={isLoaded}>
       <Card
@@ -42,8 +47,8 @@ function experience({ experiences, isLoaded }) {
         </CardHeader>
         <CardBody>
           <Stack gap={2}>
-            {experiences?.map((ex, i) => (
-              <Flex key={i} justifyContent={"space-between"} alignItems={"top"}>
+            {experiences?.slice().reverse().map((ex) => (
+              <Flex key={ex._id} justifyContent={"space-between"} alignItems={"top"}>
                 <Flex columnGap={"0.5"} alignItems={"center"}>
                   <Avatar
                     size={"md"}

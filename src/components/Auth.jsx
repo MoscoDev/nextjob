@@ -63,9 +63,9 @@ function Auth() {
       bg={"transparent"}
       className="rounded-lg h-[calc(100vh-78px)]"
     >
-      <CardHeader>
+      <CardHeader px={0} marginTop={25}>
         <Stack spacing={3}>
-          <Heading className="text-indigo-700" size="md">
+          <Heading className="text-indigo-700" size="lg">
             Log in to apply now
           </Heading>
           <Text fontSize={"sm"}>
@@ -141,7 +141,7 @@ function Auth() {
         </Stack>
       </CardHeader>
 
-      <CardBody>
+      <CardBody px={0}>
         <Flex px="6" mb={"8"} align="center">
           <Divider />
           <Text
@@ -156,10 +156,10 @@ function Auth() {
         </Flex>
         <form>
           <FormControl isInvalid={false}>
-            <Stack spacing={3}>
+            <Stack gap={3}>
               <Input
                 placeholder="Email Address"
-                size="md"
+                size="lg"
                 id="email"
                 autoComplete="current-password"
                 pr="1rem"
@@ -171,6 +171,7 @@ function Auth() {
                 <Input
                   id="password"
                   pr="1rem"
+                  size="lg"
                   type={show ? "text" : "password"}
                   placeholder="Enter password"
                   autoComplete="current-password"
@@ -194,23 +195,26 @@ function Auth() {
                 </FormHelperText>
               )}
               <FormErrorMessage>{errorMessage}</FormErrorMessage>
-              <Link className="text-sm font-bold text-indigo-700">
-                {" "}
-                Forgot Password?
-              </Link>
-              <Checkbox
-                size={"sm"}
-                value="mid-level"
-                fontWeight={"normal"}
-                checked={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-              >
-                Keep me logged in
-              </Checkbox>
+              <Flex direction={"row-reverse"} justifyContent={"space-between"}>
+                <Link className="text-sm font-bold text-indigo-700">
+                  {" "}
+                  Forgot Password?
+                </Link>
+                <Checkbox
+                  size={"sm"}
+                  value="mid-level"
+                  fontWeight={"normal"}
+                  checked={rememberMe}
+                  onChange={() => setRememberMe(!rememberMe)}
+                >
+                  Keep me logged in
+                </Checkbox>
+              </Flex>
+
               <Link
                 href="#"
                 onClick={handleLogin}
-                className="mt-1 flex w-full items-center justify-center rounded-md border border-transparent p-2 bg-indigo-600 lg:py-2 lg:px-4 lg:text-md text-sm font-normal text-white shadow-sm hover:bg-indigo-700"
+                className="mt-1 flex w-full items-center justify-center rounded-md border border-transparent py-3 bg-indigo-600 lg:py-2 lg:px-4 lg:text-md text-base font-normal text-white shadow-sm hover:bg-indigo-700"
               >
                 Log in
               </Link>

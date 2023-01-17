@@ -113,8 +113,7 @@ function Job({
   }, []);
 
   return (
-    <Skeleton isLoaded={isLoaded || setTimeout(()=>true,2000)
-    }>
+    <Skeleton isLoaded={isLoaded || setTimeout(() => true, 2000)}>
       <Card
         variant={"elevated"}
         bg={darkmode === "light" ? "white" : ""}

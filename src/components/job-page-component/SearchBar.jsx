@@ -42,7 +42,12 @@ function SearchBar({}) {
   };
   return (
     <>
-      <Drawer onClose={onClose} isOpen={isOpen}>
+      <Drawer
+        onClose={onClose}
+        onOpen={onOpen}
+        isOpen={isOpen}
+        placement={"left"}
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader className="border-y text-indigo-700 border-b-indigo-200/60">
@@ -285,11 +290,7 @@ function SearchBar({}) {
           bg={darkmode === "light" ? "white" : ""}
         >
           <CardHeader paddingBottom={0}>
-            <Flex
-              justifyContent={"space-between"}
-              alignItems="center"
-              flexWrap="wrap"
-            >
+            <Flex columnGap={2} alignItems="center" flexWrap="wrap">
               <Heading
                 className="text-indigo-700"
                 size="md"
@@ -298,14 +299,6 @@ function SearchBar({}) {
               >
                 Search Jobs
               </Heading>
-              <div className="lg:hidden sm:block md:hidden">
-                <IconButton
-                  onClick={() => handleClick("full")}
-                  icon={
-                    <AdjustmentsHorizontalIcon className="w-6 h-6 text-indigo-600" />
-                  }
-                />
-              </div>
             </Flex>
           </CardHeader>
           <CardBody>
@@ -339,6 +332,14 @@ function SearchBar({}) {
                   <option value="PastWeek">Past 24 hours</option>
                   <option value="PastWeek">Past month</option>
                 </Select>
+                <div className="lg:hidden sm:block md:hidden">
+                  <IconButton
+                    onClick={() => handleClick("full")}
+                    icon={
+                      <AdjustmentsHorizontalIcon className="w-6 h-6 text-indigo-600" />
+                    }
+                  />
+                </div>
               </HStack>
               <Button size={"md"} isLoading={isLoading} className="w-full">
                 Search

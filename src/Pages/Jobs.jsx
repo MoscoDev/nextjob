@@ -92,7 +92,7 @@ function Jobs() {
                 isLoaded={isProfileLoaded}
               />
               <Experience
-                experiences={profile?.experiences}
+                experiences={profile?.experiences.reverse()}
                 isLoaded={isProfileLoaded}
               />
               <Skills skills={profile?.skills} isLoaded={isProfileLoaded} />
@@ -104,7 +104,7 @@ function Jobs() {
           className="lg:py-0 md:py-6 sm:px-0 lg:col-span-6 md:col-span-4 sm:col-span-6 gap-5 lg:block w-full"
         >
           <Stack gap={2}>
-            <div className="top-16 sticky z-10">
+            <div className="top-6 sticky z-10">
               <SearchBar />
             </div>
 
