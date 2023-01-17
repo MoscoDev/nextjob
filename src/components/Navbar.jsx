@@ -149,7 +149,7 @@ function Navbar() {
           <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
             <Dialog.Panel
               focus="true"
-              className="fixed inset-0 z-14 overflow-y-auto bg-white px-6 py-6 lg:hidden"
+              className="fixed inset-0 z-[11] overflow-y-auto bg-white px-6 py-6 lg:hidden"
             >
               <div className="flex h-9 items-center justify-between">
                 <div className="flex">

@@ -117,7 +117,8 @@ function Job({
       <Card
         variant={"elevated"}
         bg={darkmode === "light" ? "white" : ""}
-        className="rounded-lg "
+        className="rounded-lg"
+        zIndex={"base"}
       >
         <CardHeader>
           <Flex justifyContent={"space-between"} alignItems={"center"}>
