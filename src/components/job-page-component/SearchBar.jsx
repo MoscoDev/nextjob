@@ -286,7 +286,7 @@ function SearchBar({}) {
       <Stack borderBottom={"1"}>
         <Card
           variant={"filled"}
-          className="rounded-lg"
+          className="rounded-lg border-b"
           bg={darkmode === "light" ? "white" : ""}
         >
           <CardHeader paddingBottom={0}>

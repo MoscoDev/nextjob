@@ -51,10 +51,10 @@ function Jobs() {
     }
   }, []);
   return (
-    <div style={{ maxWidth: "100vw" }}>
+    <div style={{ maxWidth: "100vw" }} className={"pb-10 bg-grey/20"}>
       <Grid
         variant={"outline"}
-        className="sm:px-10 bg-grey/20 sm:py-0 lg:py-6 lg:px-18 lg:grid-cols-12 sm:grid-cols-6"
+        className="sm:px-10  sm:py-0 lg:py-6 pb-10 lg:px-18 lg:grid-cols-12 sm:grid-cols-6"
         alignItems={"start"}
         gap={4}
       >
@@ -104,13 +104,11 @@ function Jobs() {
           className="lg:py-0 md:py-6 sm:px-0 lg:col-span-6 md:col-span-4 sm:col-span-6 gap-5 lg:block w-full"
         >
           <Stack gap={2}>
-            <div className="top-6 sticky z-10">
+            <div className="!sticky top-[calc(78px-3.2rem)] sm:relative z-10">
               <SearchBar />
             </div>
-
-            {/* <Skeleton isLoaded={isLoaded} fadeDuration={2}> */}
-            {jobs.map((job, i) => (
-              
+            <Skeleton isLoaded={isLoaded} className={"min-h-[265] gap-2 grid"}>
+              {jobs?.map((job, i) => (
                 <Job
                   key={job?._id}
                   isLoaded={isLoaded}
@@ -119,16 +117,15 @@ function Jobs() {
                     (savedjob) => savedjob?.job._id === job._id
                   )}
                 />
-              
-            ))}
-            {/* </Skeleton> */}
+              ))}
+            </Skeleton>
           </Stack>
         </GridItem>
         <GridItem
           bg="transparent"
           className="pb-5 gap-5 h-[85vh] md:block lg:grid hidden sticky top-[calc(78px+1.5rem)] md:col-span-2 lg:col-span-3"
         >
-          <Skeleton isLoaded={setTimeout(() => setIsLoaded(true), 2000)}>
+          <Skeleton isLoaded={isLoaded}>
             <Stack>
               <Card
                 maxW="md"

@@ -1,9 +1,14 @@
 import {
-    Avatar, Card,
-    CardBody, CardHeader, Flex,
-    Heading, Skeleton, Stack,
-    Text,
-    Tooltip
+  Avatar,
+  Card,
+  CardBody,
+  CardHeader,
+  Flex,
+  Heading,
+  Skeleton,
+  Stack,
+  Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { Duration } from "duration-converter";
@@ -11,11 +16,6 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 const darkmode = localStorage.getItem("chakra-ui-color-mode");
 
 function experience({ experiences, isLoaded }) {
-
- 
-  
-  let re = experiences?.reverse();
-  console.log(re); 
   return (
     <Skeleton isLoaded={isLoaded}>
       <Card
@@ -47,40 +47,50 @@ function experience({ experiences, isLoaded }) {
         </CardHeader>
         <CardBody>
           <Stack gap={2}>
-            {experiences?.slice().reverse().map((ex) => (
-              <Flex key={ex._id} justifyContent={"space-between"} alignItems={"top"}>
-                <Flex columnGap={"0.5"} alignItems={"center"}>
-                  <Avatar
-                    size={"md"}
-                    name={ex?.companyName.split(",")[0]}
-                    src=""
-                  />
-                  <div>
-                    <Text
-                      fontSize="sm"
-                      textAlign={"left"}
-                      textTransform="capitalize"
-                      className="text-gray-800 font-bold"
-                    >
-                      {ex?.jobTitle}
-                    </Text>
-                    <Text className="text-gray-400" fontSize={"sm"}>
-                      {ex?.companyName + " - " + "Fulltime"}
-                    </Text>
-                  </div>
-                </Flex>
-                <Text
-                  fontSize="sm"
-                  alignItems={"flex-start"}
-                  fontWeight={""}
-                  whiteSpace={"nowrap"}
+            {experiences
+              ?.slice()
+              .reverse()
+              .map((ex) => (
+                <Flex
+                  key={ex._id}
+                  justifyContent={"space-between"}
+                  alignItems={"top"}
+                  width="full"
                 >
-                  {Duration.fromSeconds(
-                    ex?.duration * 365 * 24 * 60 * 60
-                  ).toString()}
-                </Text>
-              </Flex>
-            ))}
+                  <Flex width={"full"} columnGap={"1.5"} alignItems={"center"}>
+                    <Avatar
+                      size={"sm"}
+                      name={ex?.company.name}
+                      src={ex?.company.logo}
+                    />
+                    <Stack width={"full"}>
+                      <Flex justifyContent={"space-between"}>
+                        <Text
+                          fontSize="sm"
+                          textAlign={"left"}
+                          textTransform="capitalize"
+                          className="text-gray-800 font-medium"
+                        >
+                          {ex?.jobTitle}
+                        </Text>
+                        <Text
+                          fontSize="sm"
+                          alignItems={"flex-start"}
+                          fontWeight={""}
+                          whiteSpace={"nowrap"}
+                        >
+                          {Duration.fromSeconds(
+                            ex?.duration * 365 * 24 * 60 * 60
+                          ).toString()}
+                        </Text>
+                      </Flex>
+                      <Text className="text-gray-400 !mt-0" fontSize={"sm"}>
+                        {ex?.company.name + " - " + "Fulltime"}
+                      </Text>
+                    </Stack>
+                  </Flex>
+                </Flex>
+              ))}
           </Stack>
         </CardBody>
       </Card>

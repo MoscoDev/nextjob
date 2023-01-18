@@ -9,6 +9,7 @@ import { extendTheme, ChakraProvider } from "@chakra-ui/react";
 import Signup from "./Pages/Signup";
 import Job from "./Pages/Job";
 import { setAuthToken } from "../utils/setAuthToken";
+import { Footer } from "./components/Footer";
 
 axios.defaults.baseURL = "https://nextjobs.onrender.com/api/v1";
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="sign-up" element={<Signup />} />
           <Route path="jobs/:id" element={<Job />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </ChakraProvider>
   );
