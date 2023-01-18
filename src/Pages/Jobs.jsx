@@ -103,11 +103,11 @@ function Jobs() {
           bg="transparent"
           className="lg:py-0 md:py-6 sm:px-0 lg:col-span-6 md:col-span-4 sm:col-span-6 gap-5 lg:block w-full"
         >
-          <Stack gap={2}>
-            <div className="!sticky top-[calc(78px-3.2rem)] sm:relative z-10">
+          <Stack>
+            <div className="sticky sm:top-0 top-[calc(78px-3.2rem)] sm:relative z-10">
               <SearchBar />
             </div>
-            <Skeleton isLoaded={isLoaded} className={"min-h-[265] gap-2 grid"}>
+            <Skeleton isLoaded={isLoaded} className={"min-h-[265] gap-3 grid"}>
               {jobs?.map((job, i) => (
                 <Job
                   key={job?._id}
