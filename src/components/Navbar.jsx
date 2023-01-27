@@ -1,106 +1,14 @@
-import React, { useState } from "react";
-import logo from "../assets/img/logo.svg";
+import React from "react";
 import {
-  Bars3Icon,
-  XMarkIcon,
-  BookmarkIcon,
-  UserIcon,
-  BellAlertIcon,
-  BriefcaseIcon,
-} from "@heroicons/react/24/solid";
-import { Dialog } from "@headlessui/react";
-import {
-  Tooltip,
-  useDisclosure,
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  Input,
-  Heading,
-} from "@chakra-ui/react";
+  Bars3Icon
+  } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
-import Job from "./job-page-component/Job";
-import Notification from "./Notification";
 
 function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [notificationOpen, setNotificationOpen] = useState(false);
-  const btnRef = React.useRef();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const navigation = [
-    {
-      name: "My Jobs",
-      to: "/myjobs",
-      icon: (
-        <Tooltip label={"My Jobs"}>
-          <BriefcaseIcon className="h-5 w-5" />
-        </Tooltip>
-      ),
-    },
-    {
-      name: "Notifications",
-      to: "#",
-      icon: (
-        <Tooltip label={"Notifications"}>
-          <BellAlertIcon className="h-5 w-5 hover:text-white" />
-        </Tooltip>
-      ),
-      action: btnRef,
-      onClick: onOpen,
-    },
-    {
-      name: "Saved",
-      to: "/saved",
-      icon: (
-        <Tooltip label={"Saved Jobs"}>
-          <BookmarkIcon className="h-5 w-5 active:text-indigo-700" />
-        </Tooltip>
-      ),
-    },
-    {
-      name: "Profile",
-      to: "/profile",
-
-      icon: (
-        <Tooltip label={"Profile"}>
-          <UserIcon className="h-5 w-5" />
-        </Tooltip>
-      ),
-    },
-  ];
+ 
+ 
   return (
     <div className="sticky top-0 z-[11] bg-white">
-      <Drawer
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onClose={onClose}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader className="border-y text-indigo-700 border-b-indigo-200/60">
-            <Heading fontSize={"large"}>Notifications</Heading>
-          </DrawerHeader>
-
-          <DrawerBody padding={3}>
-            <Notification />
-          </DrawerBody>
-
-          <DrawerFooter>
-            <Button
-              variant="outline"
-              onClick={() => setNotificationOpen(false)}
-            >
-              Cancel
-            </Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
       <div className="px-6 py-5 lg:px-20 border-y border-b-indigo-200/60 ">
         <div>
           <nav
@@ -110,7 +18,13 @@ function Navbar() {
             <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
               <Link to="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Nextjobs</span>
-                <img className="h-8" src={logo} alt="" />
+                <img
+                  className="h-8"
+                  src={
+                    "data:image/png;base64,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"
+                  }
+                  alt=""
+                />
               </Link>
             </div>
             <div className="flex md:hidden lg:hidden">
@@ -123,84 +37,7 @@ function Navbar() {
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-
-            <div className="hidden md:flex lg:flex lg:min-w-0 lg:flex-1 lg:justify-end items-center md:gap-x-5">
-              <div className="sm:hidden md:flex lg:flex lg:min-w-fit lg: md:justify-center md:gap-x-5  whitespace-nowrap">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.to}
-                    ref={item.action}
-                    onClick={item.onClick}
-                    className="font-semibold text-black-500 hover:text-white flex-nowrap p-2 hover:p-2 rounded-full bg-grey/80 m-auto hover:bg-indigo-700 ease-in"
-                  >
-                    {item.icon}
-                  </Link>
-                ))}
-              </div>
-              <Link
-                to="/employer"
-                className="flex w-fit items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-1.5 text-base font-medium text-white shadow-sm hover:bg-indigo-700 whitespace-nowrap"
-              >
-                Post Job
-              </Link>
-            </div>
           </nav>
-          <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-            <Dialog.Panel
-              focus="true"
-              className="fixed inset-0 z-[11] overflow-y-auto bg-white px-6 py-6 lg:hidden"
-            >
-              <div className="flex h-9 items-center justify-between">
-                <div className="flex">
-                  <Link to="/" className="-m-1.5 p-1.5">
-                    <span className="sr-only">Your Company</span>
-                    <img className="h-8" src={logo} alt="" />
-                  </Link>
-                </div>
-                <div className="flex">
-                  <button
-                    type="button"
-                    className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <span className="sr-only">Close menu</span>
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </div>
-              </div>
-              <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-gray-500/10">
-                  <div className="space-y-2 py-6">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.to}
-                        ref={item.action}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setMobileMenuOpen(false);
-                          item.onClick();
-                        }}
-                        className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="py-6">
-                    <Link
-                      to="/login"
-                      className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Log in
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </Dialog.Panel>
-          </Dialog>
         </div>
       </div>
     </div>
