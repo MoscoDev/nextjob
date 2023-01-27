@@ -14,7 +14,7 @@ function ScanBarcode() {
   return (
     <div>
       <div class="bg-white h-[100vh] dark:bg-gray-800 overflow-hidden relative flex flex-col sm:flex-row">
-        <div class="text-start flex flex-col justify-center  w-full sm:w-1/2 py-12 px-4 sm:px-12 lg:py-16 lg:px-8 z-20">
+        <div class="text-start flex flex-col justify-center  w-full sm:w-1/2 py-12 px-4 sm:px-12 lg:py-16 lg:px-8 z-9">
           <h2 class="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
             <span class="block">Want to get movies ?</span>
             <span class="block text-indigo-500">It&#x27;s today or never.</span>
