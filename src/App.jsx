@@ -7,8 +7,6 @@ import { Footer } from "./components/Footer";
 import ScanBarcode from "./Pages/ScanBarcode";
 import Movielist from "./Pages/Movielist";
 
-
-
 const theme = extendTheme({
   colors: {
     brand: {
