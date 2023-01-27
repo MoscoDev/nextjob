@@ -1,23 +1,13 @@
 import React from "react";
-import Home from "./Pages/Home";
-import Jobs from "./Pages/Jobs";
-import Login from "./Pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Navbar from "./components/Navbar";
 import { extendTheme, ChakraProvider } from "@chakra-ui/react";
-import Signup from "./Pages/Signup";
-import Job from "./Pages/Job";
-import { setAuthToken } from "../utils/setAuthToken";
 import { Footer } from "./components/Footer";
+import ScanBarcode from "./Pages/ScanBarcode";
+import Movielist from "./Pages/Movielist";
 
-axios.defaults.baseURL = "https://nextjobs.onrender.com/api/v1";
 
-const token = localStorage.getItem("token");
-if (token) {
-  setAuthToken(token);
-}
-localStorage.setItem("chakra-ui-color-mode", "light");
 
 const theme = extendTheme({
   colors: {
@@ -35,14 +25,11 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="nav" element={<Navbar />} />
-          <Route path="jobs" element={<Jobs />} />
-          <Route path="login" element={<Login />} />
-          <Route path="sign-up" element={<Signup />} />
-          <Route path="jobs/:id" element={<Job />} />
+          <Route path="/" element={<ScanBarcode />} />
+
+          <Route path="movies" element={<Movielist />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </ChakraProvider>
   );
