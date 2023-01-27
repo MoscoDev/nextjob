@@ -10,6 +10,8 @@ import Signup from "./Pages/Signup";
 import Job from "./Pages/Job";
 import { setAuthToken } from "../utils/setAuthToken";
 import { Footer } from "./components/Footer";
+import ScanBarcode from "./Pages/ScanBarcode";
+import Movielist from "./Pages/Movielist";
 
 axios.defaults.baseURL = "https://nextjobs.onrender.com/api/v1";
 
@@ -41,8 +43,10 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="sign-up" element={<Signup />} />
           <Route path="jobs/:id" element={<Job />} />
+          <Route path="barcode" element={<ScanBarcode />} />
+          <Route path="movielist" element={<Movielist />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </ChakraProvider>
   );
