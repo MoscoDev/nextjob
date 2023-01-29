@@ -109,7 +109,7 @@ function Navbar() {
           >
             <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
               <Link to="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Nextjobs</span>
+                <span className="sr-only n">Nextjobs</span>
                 <img className="h-8" src={logo} alt="" />
               </Link>
             </div>
