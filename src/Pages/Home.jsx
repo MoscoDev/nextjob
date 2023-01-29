@@ -9,7 +9,6 @@ import Job from "../components/job-page-component/Job";
 import { Box, Grid, GridItem, Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { getJobs } from "../../utils/requests";
-import { Faq } from "../components/Faq";
 
 const navigation = [
   { name: "Contact", href: "/contact" },
@@ -20,7 +19,7 @@ const navigation = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [jobs, setJobs] = useState(undefined);
+  const [jobs, setJobs] = useState([]);
   useEffect(() => {
     //  get jobs with get jobs function in ../../utils/requests and  setJobs
     getJobs("limit=9").then((res) => {
@@ -183,8 +182,6 @@ export default function Example() {
           </Grid>
         </Box>
       ) : null}
-
-              <Faq />
     </div>
   );
 }
